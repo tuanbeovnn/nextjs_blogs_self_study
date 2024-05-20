@@ -1,0 +1,1 @@
+export const apiURL = "http://nocng.id.vn:9091/api";

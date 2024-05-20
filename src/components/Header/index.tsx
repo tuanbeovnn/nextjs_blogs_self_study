@@ -1,15 +1,55 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link';
-
 import Logo from "../../app/assets/images/logo.png";
 import SearchIcon from "../../app/assets/images/search.png";
 import SunnyIcon from "../../app/assets/images/sunny.png";
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
+import debounce from 'lodash.debounce';
+import { authLogout } from '@/sagas/auth/auth-slice';
 
 export const Header = () => {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+
+    const { user } = useSelector((state: any) => state.auth);
+    const dispatch = useDispatch();
+
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const avatarRef = useRef<HTMLImageElement>(null);
+
+
+    const toggleDropdown = useCallback(() => {
+        setDropdownVisible(prev => !prev);
+    }, []);
+
+
+    const handleOutsideClick = useCallback((event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && avatarRef.current && !avatarRef.current.contains(event.target as Node)) {
+            setDropdownVisible(false);
+        }
+    }, []);
+
+    const debouncedHandleOutsideClick = useCallback(debounce(handleOutsideClick, 100), [handleOutsideClick]);
+
+    useEffect(() => {
+        document.addEventListener("mousedown", debouncedHandleOutsideClick);
+        return () => {
+            document.removeEventListener("mousedown", debouncedHandleOutsideClick);
+            debouncedHandleOutsideClick.cancel(); // Cancel any pending debounced calls on cleanup
+        };
+    }, [debouncedHandleOutsideClick]);
+
+    useEffect(() => {
+        if (user && user.id) {
+            setDropdownVisible(false); // Hide dropdown on successful login
+        }
+    }, [user]);
+
+
+
 
     return (
         <header className="bg-white border-gray-200">
@@ -45,14 +85,6 @@ export const Header = () => {
                         </li>
                         <li>
                             <Link
-                                className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
-                                href="/my-profile"
-                            >
-                                Profile
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
                                 href="/contact"
                                 className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
                             >
@@ -74,19 +106,59 @@ export const Header = () => {
                     </form>
 
                     <div className="flex justify-center space-x-2 h-full">
-                        <Link
-                            href="/login"
-                            className="flex items-center justify-center px-5 text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out "
-                        >
-                            <button>Login</button>
-                        </Link>
-                        <Link
-                            href="/register"
-                            className="flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                        >
-                            <button>Register</button>
-                        </Link>
+                        {user && user.id ? (
+                            <div className="relative flex items-center justify-center">
+                                <img
+                                    ref={avatarRef}
+                                    className="w-10 h-10 min-w-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
+                                    src="https://i.pravatar.cc/150"
+                                    alt="Bordered avatar"
+                                    onClick={toggleDropdown}
+                                />
+                                {dropdownVisible && (
+                                    <div ref={dropdownRef} id="dropdownInformation" className="absolute top-full mt-4 right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                                        <div className="px-4 py-3 text-sm text-gray-900">
+                                            <div>{user?.name}</div>
+                                            <div className="font-medium truncate">{user?.email}</div>
+                                        </div>
+                                        <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
+                                            <li>
+                                                <a href="/" className="block px-4 py-2 hover:bg-gray-200">Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-200">Profile</Link>
+                                            </li>
+                                            <li>
+                                                <a href="/" className="block px-4 py-2 hover:bg-gray-200">Earnings</a>
+                                            </li>
+                                        </ul>
+                                        <div className="py-2">
+                                            <a href="/" onClick={() => dispatch(authLogout())}
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Sign out</a>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="flex justify-center space-x-2 h-full">
+                                <Link
+                                    href="/login"
+                                    className="flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                                >
+                                    <button>Login</button>
+                                </Link>
+                                <Link
+                                    href="/register"
+                                    className="flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                                >
+                                    <button>Register</button>
+                                </Link>
+
+                            </div>
+
+                        )}
                     </div>
+
 
                     <label className="hidden relative inline-flex items-center cursor-pointer ml-10">
                         <input

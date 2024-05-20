@@ -1,42 +1,60 @@
 "use client";
-import React from "react";
+import React, { useEffect } from 'react'
 import InputHook from "@/components/Input/InputHook";
-import { useForm, SubmitHandler, Resolver } from "react-hook-form";
+import { useRouter } from 'next/navigation';
+import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { useDispatch, useSelector } from "react-redux";
+import { authLogin } from '@/sagas/auth/auth-slice';
+// Define your FormValues type
 type FormValues = {
     email: string;
     password: string;
 };
-
+// Define the schema
 const schema = yup.object().shape({
-    email: yup.string().email("Invalid email format").required("Email is required"),
+    email: yup.string().email().required("Email is required"),
     password: yup.string().required("Password is required"),
 });
 
-export default function Login() {
-    const resolver: Resolver<FormValues> = yupResolver(schema);
-    const { handleSubmit, formState: { errors, isSubmitting, isValid }, control } = useForm<FormValues>({ resolver, mode: "onChange" });
+function Login() {
 
-
-    console.log(errors)
-
-    const onSubmit: SubmitHandler<FormValues> = (values: any, event: any) => {
-        // console.log("Send data to backend", values);
-        event.preventDefault();
-        const data = {
-            email: values.email,
-            password: values.password,
-            deviceInfo: {
-                deviceId: "123",
-                deviceType: "ios"
+    // Explicitly define the resolver type
+    const { handleSubmit, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    const randomString = Math.random().toString(20).substring(2, 14) + Math.random().toString(20).substring(2, 14);
+    const deviceID = `${userAgent}-${platform}-${randomString}`;
+    const { user } = useSelector((state: any) => state.auth);
+    const dispatch = useDispatch();
+    const router = useRouter(); // Initialize the useRouter hook
+    const onSubmit = (values: FormValues) => {
+        if (isValid) {
+            console.log("Send data to backend", values);
+            const data = {
+                email: values.email,
+                password: values.password,
+                deviceInfo: {
+                    deviceId: deviceID,
+                    deviceType: platform
+                }
             }
-        };
-    };
-
-    const onInvalid = (err: any) => {
-        console.log(err);
+            dispatch(authLogin(data));
+            // then reset form
+            reset({
+                email: "",
+                password: "",
+            })
+        }
     }
+
+    useEffect(() => {
+        if (user && user.id) {
+            console.log(user, "user")
+            router.push('/');
+        }
+    }, [user, router]);
 
     return (
         <div className="max-w-7xl mx-auto md:px-8 px-4">
@@ -44,11 +62,11 @@ export default function Login() {
                 <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">
                     Login
                 </h2>
-                <form onSubmit={handleSubmit(onSubmit, onInvalid)} autoComplete='off' noValidate>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <InputHook control={control} name="email" placeholder="you@example.com" id="email" type="email" label="Email" />
-                    {errors.email && (<span className="text-red-500 text-sm">{errors.email.message}</span>)}
+                    {errors?.email && (<span className="text-red-500 text-sm">{errors.email?.message}</span>)}
                     <InputHook control={control} name="password" placeholder="•••••••••••••" id="password" type="password" label="Password" />
-                    {errors.password && (<span className="text-red-500 text-sm">{errors.password.message}</span>)}
+                    {errors?.password && (<span className="text-red-500 text-sm">{errors.password?.message}</span>)}
                     <button
                         type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
@@ -56,6 +74,7 @@ export default function Login() {
                         {isSubmitting ? <div className="mx-auto w-5 h-5 border-2 border-white border-t-2 border-t-transparent rounded-full animate-spin"></div> : "Login Now"}
                     </button>
                 </form>
+                {/* "or" between two buttons */}
                 <div className="flex items-center justify-center mt-4">
                     <div className="border-b w-1/5"></div>
                     <div className="mx-3 text-gray-600 font-medium">or</div>
@@ -72,5 +91,7 @@ export default function Login() {
                 </button>
             </div>
         </div>
-    );
+    )
 }
+
+export default Login
