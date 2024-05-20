@@ -71,26 +71,26 @@ export const Header = () => {
                         </li>
                         <li>
                             <Link
-                                href="/blog"
+                                href="/java"
                                 className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
                             >
-                                Blog
+                                Java
                             </Link>
                         </li>
                         <li>
                             <Link
-                                href="/blog/:id"
+                                href="/javascript"
                                 className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
                             >
-                                Single Post
+                                JavaScript
                             </Link>
                         </li>
                         <li>
                             <Link
-                                href="/contact"
+                                href="/devops"
                                 className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
                             >
-                                Contact
+                                Devops
                             </Link>
                         </li>
                     </ul>
