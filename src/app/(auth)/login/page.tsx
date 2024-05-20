@@ -59,9 +59,7 @@ function Login() {
                 </h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputHook control={control} name="email" placeholder="you@example.com" id="email" type="email" label="Email" />
-                    {errors?.email && (<span className="text-red-500 text-sm">{errors.email?.message}</span>)}
                     <InputHook control={control} name="password" placeholder="•••••••••••••" id="password" type="password" label="Password" />
-                    {errors?.password && (<span className="text-red-500 text-sm">{errors.password?.message}</span>)}
                     <button
                         type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
