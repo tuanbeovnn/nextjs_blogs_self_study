@@ -1,24 +1,16 @@
 "use client"
-import React, { useEffect } from 'react'
+import { redirect } from 'next/navigation';
+import { PropsWithChildren } from 'react';
 import { useSelector } from "react-redux";
-import { useRouter } from 'next/navigation';
 
-function RequiredAuthPage({ children }: any) {
+function RequiredAuthPage({ children }: PropsWithChildren) {
 
-    const router = useRouter();
-    const { user, isAuthenticated } = useSelector((state: any) => state.auth);
+    const { user } = useSelector((state: any) => state.auth);
 
-    console.log(user, isAuthenticated);
+    if (!user?.id) {
+        return redirect('/login');
+    }
 
-    useEffect(() => {
-        if (!isAuthenticated && !user?.id) {
-            router.push('/login');
-        }
-    }, [user, router, isAuthenticated]);
-
-    // if (!user?.id) {
-    //     return router.push('/login');
-    // }
     return (
         <>{children}</>
     )

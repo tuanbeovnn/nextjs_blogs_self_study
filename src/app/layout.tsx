@@ -7,6 +7,7 @@ import { ReduxProvider } from "@/sagas/provider";
 import { ToastContainer } from "react-toastify";
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 import "react-toastify/dist/ReactToastify.css";
+import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -18,14 +19,14 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    
+
     return (
         <html lang="en">
             <body className={workSans.className}>
                 <ReduxProvider>
-                    <Header />
-                    {children}
-                    <Footer />
+                    <Layout >
+                        {children}
+                    </Layout>
                 </ReduxProvider>
                 <ToastContainer bodyClassName="font-primary text-sm"></ToastContainer>
             </body>

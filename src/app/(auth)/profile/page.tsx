@@ -2,6 +2,7 @@
 import RequiredAuthPage from "@/components/Auth";
 import React from "react";
 const Profile = () => {
+
     return (
         <RequiredAuthPage>
             <div className="max-w-7xl mx-auto md:px-8 px-4">

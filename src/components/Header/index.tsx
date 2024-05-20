@@ -1,19 +1,19 @@
 "use client"
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { authLogout } from '@/sagas/auth/auth-slice';
+import debounce from 'lodash.debounce';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../../app/assets/images/logo.png";
 import SearchIcon from "../../app/assets/images/search.png";
 import SunnyIcon from "../../app/assets/images/sunny.png";
-import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
-import debounce from 'lodash.debounce';
-import { authLogout } from '@/sagas/auth/auth-slice';
 
 export const Header = () => {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
-    const { user } = useSelector((state: any) => state.auth);
+    const { user, } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -32,6 +32,7 @@ export const Header = () => {
         }
     }, []);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedHandleOutsideClick = useCallback(debounce(handleOutsideClick, 100), [handleOutsideClick]);
 
     useEffect(() => {
@@ -48,8 +49,9 @@ export const Header = () => {
         }
     }, [user]);
 
-
-
+    const handleOptionClick = useCallback(() => {
+        setDropdownVisible(false);
+    }, []);
 
     return (
         <header className="bg-white border-gray-200">
@@ -104,7 +106,6 @@ export const Header = () => {
                             <Image src={SearchIcon} className="w-4" alt="search-icon" />
                         </div>
                     </form>
-
                     <div className="flex justify-center space-x-2 h-full">
                         {user && user.id ? (
                             <div className="relative flex items-center justify-center">
@@ -123,17 +124,17 @@ export const Header = () => {
                                         </div>
                                         <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
                                             <li>
-                                                <a href="/" className="block px-4 py-2 hover:bg-gray-200">Dashboard</a>
+                                                <Link href="/" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Dashboard</Link>
                                             </li>
                                             <li>
-                                                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-200">Profile</Link>
+                                                <Link href="/profile" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Profile</Link>
                                             </li>
                                             <li>
-                                                <a href="/" className="block px-4 py-2 hover:bg-gray-200">Earnings</a>
+                                                <Link href="/" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Earnings</Link>
                                             </li>
                                         </ul>
                                         <div className="py-2">
-                                            <a href="/" onClick={() => dispatch(authLogout())}
+                                            <a href="/" onClick={() => { dispatch(authLogout()); handleOptionClick(); }}
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Sign out</a>
                                         </div>
                                     </div>
@@ -158,9 +159,7 @@ export const Header = () => {
 
                         )}
                     </div>
-
-
-                    <label className="hidden relative inline-flex items-center cursor-pointer ml-10">
+                    <label className="relative inline-flex items-center cursor-pointer">
                         <input
                             type="checkbox"
                             checked={isDark}
@@ -223,50 +222,7 @@ export const Header = () => {
                             />
                         </svg>
                     </button>
-                    <div className="py-8 overflow-y-auto">
-                        <ul className="space-y-2">
-                            <li>
-                                <Link
-                                    href="/"
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/blog"
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
-                                >
-                                    Blog
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/blog/:id"
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
-                                >
-                                    Single Post
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/profile"
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
-                                >
-                                    Profile
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/contact"
-                                    className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100"
-                                >
-                                    Contact
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
                 {isOpen && (
                     <div

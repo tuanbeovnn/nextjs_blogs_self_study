@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react'
 import InputHook from "@/components/Input/InputHook";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -26,9 +26,8 @@ function Login() {
     const platform = window.navigator.platform;
     const randomString = Math.random().toString(20).substring(2, 14) + Math.random().toString(20).substring(2, 14);
     const deviceID = `${userAgent}-${platform}-${randomString}`;
-    const { user } = useSelector((state: any) => state.auth);
+    const { user, isAuthenticated } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
-    const router = useRouter(); // Initialize the useRouter hook
     const onSubmit = (values: FormValues) => {
         if (isValid) {
             console.log("Send data to backend", values);
@@ -49,12 +48,9 @@ function Login() {
         }
     }
 
-    useEffect(() => {
-        if (user && user.id) {
-            console.log(user, "user")
-            router.push('/');
-        }
-    }, [user, router]);
+    if (user) {
+        return redirect("/");
+    }
 
     return (
         <div className="max-w-7xl mx-auto md:px-8 px-4">
