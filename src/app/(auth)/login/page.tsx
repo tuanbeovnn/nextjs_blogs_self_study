@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect } from 'react'
 import InputHook from "@/components/Input/InputHook";
-import { redirect, useRouter } from 'next/navigation';
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-import { useDispatch, useSelector } from "react-redux";
 import { authLogin } from '@/sagas/auth/auth-slice';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { redirect } from 'next/navigation';
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import * as yup from "yup";
 // Define your FormValues type
 type FormValues = {
     email: string;

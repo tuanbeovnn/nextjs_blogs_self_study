@@ -1,11 +1,11 @@
 
-import { call, CallEffect, PutEffect, put } from 'redux-saga/effects';
-import { requestsAuthFetchMe, requestsAuthRegister, requestsFreshToken, requestsLogin } from './auth-requests';
-import { toast } from 'react-toastify';
-import { AxiosResponse } from 'axios';
-import { authUpdateUser } from './auth-slice';
-import { logOut, saveToken } from '@/utils/auth';
 import { LoginAction, RefreshTokenAction, RegisterAction } from '@/types';
+import { logOut, saveToken } from '@/utils/auth';
+import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
+import { CallEffect, PutEffect, call, put } from 'redux-saga/effects';
+import { requestsAuthFetchMe, requestsAuthRegister, requestsFreshToken, requestsLogin } from './auth-requests';
+import { authUpdateUser } from './auth-slice';
 
 export function* handleAuthRegister(
     action: RegisterAction

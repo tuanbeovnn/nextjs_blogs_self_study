@@ -1,13 +1,11 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { Footer, Header } from "@/components";
-import { Work_Sans } from "next/font/google";
-import { ReduxProvider } from "@/sagas/provider";
-import { ToastContainer } from "react-toastify";
-const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
-import "react-toastify/dist/ReactToastify.css";
 import Layout from "@/components/Layout";
+import { ReduxProvider } from "@/sagas/provider";
+import type { Metadata } from "next";
+import { Work_Sans } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./globals.css";
+const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
     title: "Create Next App",
