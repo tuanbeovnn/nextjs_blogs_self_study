@@ -1,10 +1,11 @@
+"use client";
 import {
     Ads,
     Banner,
     ListPost,
 } from '@/components';
 
-export default function Home() {
+function Home() {
     return (
         <div>
             <Banner />
@@ -21,5 +22,7 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
+
+export default Home;
