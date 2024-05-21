@@ -1,10 +1,10 @@
 
 import { takeLatest } from 'redux-saga/effects';
-import { postFetchFeedSuccess } from './post-slice'; // Update import statement
+import { postFetchFeed } from './post-slice'; // Update import statement
 import { handlePostFeedRequest } from './post-handlers';
 
 export default function* postsSaga() {
-    yield takeLatest(postFetchFeedSuccess.type, handlePostFeedRequest);
+    yield takeLatest(postFetchFeed.type, handlePostFeedRequest);
 }
 
 

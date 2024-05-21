@@ -1,7 +1,6 @@
 import React from "react";
 import Link from 'next/link';
 
-
 interface Props {
     avatar: string,
     name: string,
@@ -11,6 +10,10 @@ interface Props {
 }
 
 export const Author = ({ avatar, name, createdAt, light = false }: Props) => {
+    function moment(createdAt: string | number | Date) {
+        throw new Error("Function not implemented.");
+    }
+
     return (
         <Link href={`/author/:id`} className="flex flex-wrap items-center">
             <img
@@ -24,6 +27,7 @@ export const Author = ({ avatar, name, createdAt, light = false }: Props) => {
             >
                 {name}
             </span>
+           
             <span
                 className={`text-base ${light ? "text-[#ffff]" : "text-[#97989F]"}`}
             >

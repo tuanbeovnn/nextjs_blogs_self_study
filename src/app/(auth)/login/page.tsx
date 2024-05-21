@@ -29,7 +29,6 @@ function Login() {
     const dispatch = useDispatch();
     const onSubmit = (values: FormValues) => {
         if (isValid) {
-            console.log("Send data to backend", values);
             const data = {
                 email: values.email,
                 password: values.password,

@@ -1,23 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+interface PostItem {
+    "id": number,
+    "title": string,
+    "content": string,
+}
 interface PostsState {
-    listPost: any[];
+    listPost: PostItem[];
+    loading: boolean
 }
 
 const initialState: PostsState = {
     listPost: [],
+    loading: false,
 };
+
 
 const postSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        postFetchFeedSuccess: (state, action: PayloadAction<any[]>) => {
+        postFetchFeed: (state, action: PayloadAction) => {
+            state.loading = true;
+        },
+        postFetchFeedSuccess: (state, action: PayloadAction<PostItem[]>) => {
             state.listPost = action.payload;
         },
     },
 });
 
-export const { postFetchFeedSuccess } = postSlice.actions;
+export const { postFetchFeedSuccess, postFetchFeed } = postSlice.actions;
 
 export default postSlice.reducer;

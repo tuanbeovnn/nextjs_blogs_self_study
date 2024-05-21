@@ -9,9 +9,13 @@ const authSlice = createSlice({
         isAuthenticated: false,
     },
     reducers: {
-        authLogin: (state, action) => ({
-            ...state,
-        }),
+        
+        authLogin: (state, action) => {
+            console.log(action)
+            return {
+                ...state,
+            }
+        },
         authRegister: (state, action) => ({
             ...state,
             ...action.payload,
@@ -25,7 +29,11 @@ const authSlice = createSlice({
             ...state,
             ...action.payload,
         }),
-        authRefreshToken: (state, action) => state,
+        authRefreshToken: (state, action) => ({
+            ...state,
+            ...action.payload,
+        
+        }),
         authLogout: (state) => state,
 
     }

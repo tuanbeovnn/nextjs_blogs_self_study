@@ -81,6 +81,13 @@ export function* handleAuthRefreshTokenRequest(action: RefreshTokenAction): Gene
         }
     } catch (error: any) {
         // Properly type the error based on your expected error object (e.g., AxiosError)
+        yield put(
+            authUpdateUser({
+                user: undefined,
+                accessToken: null,
+            })
+        );
+        logOut();
         if (error.response && error.response.data) {
             toast.error(error.response.data.message);
         } else {
