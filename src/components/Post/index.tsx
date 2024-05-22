@@ -11,13 +11,13 @@ interface PostProps {
 export const Post: React.FC<PostProps> = ({ post }) => {
     return (
         <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl h-full">
-            <Link href={`/blog/${post?.category.name.toLowerCase}`} className="relative block pt-[67%]">
+            <div className="relative block pt-[67%]">
                 <img
                     className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg"
                     src="https://source.unsplash.com/random"
                     alt=""
                 />
-            </Link>
+            </div>
 
             <div className="mt-4 p-2">
                 <Badge mode="outline" label={post?.category.name} />
