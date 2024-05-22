@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
+
 const BlogDetail = () => {
     const params = useParams();
     const { postDetail, loading } = useSelector((state: any) => state.post);

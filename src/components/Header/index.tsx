@@ -1,5 +1,6 @@
 "use client"
 import { authLogout } from '@/sagas/auth/auth-slice';
+import { fetchByCategory } from '@/sagas/post/post-slice';
 import debounce from 'lodash.debounce';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,21 +11,19 @@ import SearchIcon from "../../app/assets/images/search.png";
 import SunnyIcon from "../../app/assets/images/sunny.png";
 
 export const Header = () => {
+    const dispatch = useDispatch();
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-
     const { user, } = useSelector((state: any) => state.auth);
-    const dispatch = useDispatch();
 
+    const { listCatagory, loading } = useSelector((state: any) => state.post);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const avatarRef = useRef<HTMLImageElement>(null);
 
-
     const toggleDropdown = useCallback(() => {
         setDropdownVisible(prev => !prev);
     }, []);
-
 
     const handleOutsideClick = useCallback((event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) && avatarRef.current && !avatarRef.current.contains(event.target as Node)) {
@@ -34,6 +33,10 @@ export const Header = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedHandleOutsideClick = useCallback(debounce(handleOutsideClick, 100), [handleOutsideClick]);
+
+    const handleOptionClick = useCallback(() => {
+        setDropdownVisible(false);
+    }, []);
 
     useEffect(() => {
         document.addEventListener("mousedown", debouncedHandleOutsideClick);
@@ -49,9 +52,9 @@ export const Header = () => {
         }
     }, [user]);
 
-    const handleOptionClick = useCallback(() => {
-        setDropdownVisible(false);
-    }, []);
+    useEffect(() => {
+        dispatch(fetchByCategory());
+    }, [dispatch]);
 
     return (
         <header className="bg-white border-gray-200">
@@ -69,30 +72,17 @@ export const Header = () => {
                                 Home
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href="/blog/java"
-                                className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
-                            >
-                                Java
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/blog/javascript"
-                                className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
-                            >
-                                JavaScript
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/blog/devops"
-                                className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
-                            >
-                                Devops
-                            </Link>
-                        </li>
+                        {listCatagory.map((category: any) => (
+                            <li key={category?.id}>
+                                <Link
+                                    href={`/blog/${category.name.toLowerCase()}`}
+                                    className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
+                                >
+                                    {category?.name}
+                                </Link>
+                            </li>
+                        ))}
+
                     </ul>
                 </div>
                 <div className="hidden md:flex items-center gap-x-3 flex-shrink-0 h-[36px]">

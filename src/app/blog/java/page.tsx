@@ -1,22 +1,35 @@
-import { Badge, Author, ListPost, Ads } from "@/components";
-import Link from "next/link";
-import React from "react";
+"use client";
+import { Ads, Author, Badge, Post } from "@/components";
+import { fetchByCategory, postFetchByCategory } from "@/sagas/post/post-slice";
+import { PostType } from "@/types";
+import { usePathname } from 'next/navigation';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+const JavaBlog = () => {
+    const dispatch = useDispatch();
+    const pathname = usePathname()
+    const segments = pathname.split('/');
+    const categoryName = segments[segments.length - 1];
+    const { listCatagory, loading, listPostByCategory } = useSelector((state: any) => state.post);
 
-const Blog = () => {
+    useEffect(() => {
+        dispatch(fetchByCategory());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (listCatagory.length > 0) {
+            const category = listCatagory.find((item: any) => item.name === "Java");
+            if (category) {
+                dispatch(postFetchByCategory(category.id.toString()));
+            }
+        }
+    }, [categoryName, dispatch, listCatagory]);
+
     return (
         <div className="max-w-7xl mx-auto md:px-8 px-4">
             <div className="py-4 text-center md:mb-12 mb-4">
-                <h1 className="text-3xl text-[#181A2A] font-semibold">Page Title</h1>
-                <div className="flex items-center justify-center mt-2">
-                    <Link href="/" className="text-base text-[#3B3C4A]">
-                        Home
-                    </Link>
-                    <div className="mx-3 h-4 w-[1px] bg-[#E8E8EA]" />
-                    <Link href="/blog" className="text-base font-medium text-[#3B3C4A]">
-                        Blog
-                    </Link>
-                </div>
+                <h1 className="text-3xl text-[#181A2A] font-semibold">{categoryName.toUpperCase()}</h1>
             </div>
             <div
                 style={{
@@ -39,9 +52,19 @@ const Blog = () => {
                     />
                 </div>
             </div>
-
             <div className="md:pt-12 pt-4">
-                <ListPost />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {listPostByCategory && listPostByCategory?.length > 0 ? (
+                        listPostByCategory.map((post: PostType) => (
+                            <Post
+                                key={post.id}
+                                post={post}
+                            />
+                        ))
+                    ) : (
+                        <p>No posts available.</p>
+                    )}
+                </div>
                 <div className="md:my-20 my-8">
                     <Ads />
                 </div>
@@ -50,4 +73,4 @@ const Blog = () => {
     );
 };
 
-export default Blog;
+export default JavaBlog;

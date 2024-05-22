@@ -5,16 +5,26 @@ interface PostItem {
     "title": string,
     "content": string,
 }
+
+interface CategoryItem {
+    "id": number,
+    "name": string,
+}
 interface PostsState {
     listPost: PostItem[];
     loading: boolean;
     postDetail: PostItem | {};
+    listPostByCategory: PostItem[]; // Dictionary of PostItem arrays by category
+    listCatagory: CategoryItem[];
+
 }
 
 const initialState: PostsState = {
     listPost: [],
     loading: false,
     postDetail: {},
+    listPostByCategory: [],
+    listCatagory: [],
 };
 
 
@@ -42,6 +52,26 @@ const postSlice = createSlice({
         postFetchByIdFailure: (state) => {
             state.loading = false;
         },
+        postFetchByCategory: (state, action: PayloadAction<string>) => {
+            state.loading = true;
+        },
+        postFetchByCategorySuccess: (state, action: PayloadAction<PostItem[]>) => {
+            state.listPostByCategory = action.payload;
+            state.loading = false;
+        },
+        postFetchByCategoryFailure: (state) => {
+            state.loading = false;
+        },
+        fetchByCategory: (state, action: PayloadAction) => {
+            state.loading = true;
+        },
+        fetchByCategorySuccess: (state, action: PayloadAction<CategoryItem[]>) => {
+            state.listCatagory = action.payload;
+            state.loading = false;
+        },
+        fetchByCategoryFailure: (state) => {
+            state.loading = false;
+        },
     },
 });
 
@@ -52,6 +82,12 @@ export const {
     postFetchById,
     postFetchByIdSuccess,
     postFetchByIdFailure,
+    postFetchByCategory,
+    postFetchByCategorySuccess,
+    postFetchByCategoryFailure,
+    fetchByCategory,
+    fetchByCategorySuccess,
+    fetchByCategoryFailure,
 } = postSlice.actions;
 
 export default postSlice.reducer;
