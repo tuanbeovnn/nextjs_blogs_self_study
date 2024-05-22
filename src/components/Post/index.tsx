@@ -10,7 +10,7 @@ interface PostProps {
 
 export const Post: React.FC<PostProps> = ({ post }) => {
     return (
-        <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl">
+        <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl h-full">
             <Link href={`/blog/${post?.category.name.toLowerCase}`} className="relative block pt-[67%]">
                 <img
                     className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg"
@@ -23,7 +23,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                 <Badge mode="outline" label={post?.category.name} />
                 <Link
                     href={`/blog/${post?.id}`}
-                    className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4"
+                    className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-32"
                 >
                     {post?.title}
                 </Link>
