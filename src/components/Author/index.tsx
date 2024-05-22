@@ -19,7 +19,7 @@ export const Author = ({ avatar, name, createdAt, light = false }: Props) => {
                 alt={name}
             />
             <span
-                className={`text-base font-medium mr-5 ${light ? "text-[#ffff]" : "text-[#97989F]"
+                className={`text-base font-medium mr-5 ${light ? "text-[#ffff]" : "text-[#97989F] no-underline hover:underline"
                     }`}
             >
                 {name}

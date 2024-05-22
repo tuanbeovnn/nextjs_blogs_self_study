@@ -23,7 +23,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                 <Badge mode="outline" label={post?.category.name} />
                 <Link
                     href={`/blog/${post?.id}`}
-                    className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-32"
+                    className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline"
                 >
                     {post?.title}
                 </Link>

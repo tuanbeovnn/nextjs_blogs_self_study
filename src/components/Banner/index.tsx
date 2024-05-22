@@ -15,7 +15,7 @@ export const Banner = () => {
                 >
                     <div className="bg-white p-10 rounded-xl shadow-box border border-[#E8E8EA] w-[598px] hidden md:block ml-16 -mb-16">
                         <Badge label="Technology" />
-                        <h1 className="text-3xl leading-10 text-[#181A2A] font-semibold mt-4 mb-6 line-clamp-3">
+                        <h1 className="text-3xl leading-10 text-[#181A2A] font-semibold mt-4 mb-6 line-clamp-3 no-underline hover:underline cursor-pointer">
                             The Impact of Technology on the Workplace: How Technology is
                             Changing
                         </h1>
