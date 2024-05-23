@@ -30,7 +30,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                 <Author
                     avatar="https://images2.thanhnien.vn/Uploaded/minhnguyet/2021_11_11/trieu-lo-tu-217.jpg"
                     name={post?.createdBy.name}
-                    createdAt="09/11/1998"
+                    createdAt={post?.createdDate}
                 />
 
             </div>

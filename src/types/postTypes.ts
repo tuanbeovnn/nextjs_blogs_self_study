@@ -30,4 +30,5 @@ export interface PostType {
     favoriteType: string; // Assuming RatingType is a string, update accordingly
     category: CategoryItemType;
     tags: PostTag[];
+    createdDate: string;
 }
