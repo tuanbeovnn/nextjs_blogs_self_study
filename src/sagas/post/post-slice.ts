@@ -1,21 +1,14 @@
+import { CategoryItemType, PostType } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface PostItem {
-    "id": number,
-    "title": string,
-    "content": string,
-}
 
-interface CategoryItem {
-    "id": number,
-    "name": string,
-}
+
 interface PostsState {
-    listPost: PostItem[];
+    listPost: PostType[];
     loading: boolean;
-    postDetail: PostItem | {};
-    listPostByCategory: PostItem[]; // Dictionary of PostItem arrays by category
-    listCatagory: CategoryItem[];
+    postDetail: PostType | {};
+    listPostByCategory: PostType[];
+    listCatagory: CategoryItemType[];
 
 }
 
@@ -35,17 +28,17 @@ const postSlice = createSlice({
         postFetchFeed: (state, action: PayloadAction) => {
             state.loading = true;
         },
-        postFetchFeedSuccess: (state, action: PayloadAction<PostItem[]>) => {
+        postFetchFeedSuccess: (state, action: PayloadAction<PostType[]>) => {
             state.listPost = action.payload;
             state.loading = false;
         },
         postFetchFeedFailure: (state) => {
             state.loading = false;
         },
-        postFetchById: (state, action: PayloadAction<string>) => { // Ensure payload type is string
+        postFetchById: (state, action: PayloadAction<string>) => {
             state.loading = true;
         },
-        postFetchByIdSuccess: (state, action: PayloadAction<PostItem>) => {
+        postFetchByIdSuccess: (state, action: PayloadAction<PostType>) => {
             state.postDetail = action.payload;
             state.loading = false;
         },
@@ -55,7 +48,7 @@ const postSlice = createSlice({
         postFetchByCategory: (state, action: PayloadAction<string>) => {
             state.loading = true;
         },
-        postFetchByCategorySuccess: (state, action: PayloadAction<PostItem[]>) => {
+        postFetchByCategorySuccess: (state, action: PayloadAction<PostType[]>) => {
             state.listPostByCategory = action.payload;
             state.loading = false;
         },
@@ -65,7 +58,7 @@ const postSlice = createSlice({
         fetchByCategory: (state, action: PayloadAction) => {
             state.loading = true;
         },
-        fetchByCategorySuccess: (state, action: PayloadAction<CategoryItem[]>) => {
+        fetchByCategorySuccess: (state, action: PayloadAction<CategoryItemType[]>) => {
             state.listCatagory = action.payload;
             state.loading = false;
         },

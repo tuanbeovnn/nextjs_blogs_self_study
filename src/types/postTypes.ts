@@ -4,7 +4,7 @@ export interface UserLikedPostResponse {
     name: string;
 }
 
-export interface CategoryResponse {
+export interface CategoryItemType {
     id: string;
     name: string;
 }
@@ -28,6 +28,6 @@ export interface PostType {
     createdBy: CreatedByResponse;
     usersLikedPost: UserLikedPostResponse[];
     favoriteType: string; // Assuming RatingType is a string, update accordingly
-    category: CategoryResponse;
+    category: CategoryItemType;
     tags: PostTag[];
 }
