@@ -1,5 +1,5 @@
 "use client";
-import { Badge, Author, ListPost, Ads, Post } from "@/components";
+import { Badge, Author, Ads, Post } from "@/components";
 import { fetchByCategory, postFetchByCategory } from "@/sagas/post/post-slice";
 import { PostType } from "@/types";
 import Link from "next/link";
@@ -7,23 +7,21 @@ import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
-const JavaScriptBlog = () => {
-
+const CategoryBlog = () => {
 
     const dispatch = useDispatch();
-    const pathname = usePathname()
+    const pathname = usePathname();
     const segments = pathname.split('/');
     const categoryName = segments[segments.length - 1];
-    const { listCatagory, loading, listPostByCategory } = useSelector((state: any) => state.post);
 
+    const { listCatagory, loading, listPostByCategory } = useSelector((state: any) => state.post);
     useEffect(() => {
         dispatch(fetchByCategory());
     }, [dispatch]);
 
     useEffect(() => {
         if (listCatagory.length > 0) {
-            const category = listCatagory.find((item: any) => item.name === "JavaScript");
+            const category = listCatagory.find((item: any) => item.name === categoryName);
             if (category) {
                 dispatch(postFetchByCategory(category.id.toString()));
             }
@@ -78,4 +76,4 @@ const JavaScriptBlog = () => {
     );
 };
 
-export default JavaScriptBlog;
+export default CategoryBlog;

@@ -75,7 +75,7 @@ export const Header = () => {
                         {listCatagory.map((category: any) => (
                             <li key={category?.id}>
                                 <Link
-                                    href={`/blog/${category.name.toLowerCase()}`}
+                                    href={`/blog/category/${category?.name}`}
                                     className="inline-block text-[#3B3C4A] hover:text-blue-600 text-base"
                                 >
                                     {category?.name}
