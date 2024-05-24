@@ -25,11 +25,9 @@ function Login() {
     const platform = window.navigator.platform;
     const randomString = Math.random().toString(20).substring(2, 14) + Math.random().toString(20).substring(2, 14);
     const deviceID = `${userAgent}-${platform}-${randomString}`;
-    const { user, isAuthenticated } = useSelector((state: any) => state.auth);
+    const { user, isAuthenticated, loading } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
     const onSubmit = (values: FormValues) => {
-
-        console.log(values)
         if (isValid) {
             const data = {
                 email: values.email,
@@ -65,7 +63,7 @@ function Login() {
                         type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
-                        {isSubmitting ? <div className="mx-auto w-5 h-5 border-2 border-white border-t-2 border-t-transparent rounded-full animate-spin"></div> : "Login Now"}
+                        {loading ? <div className="mx-auto w-5 h-5 border-2 border-white border-t-2 border-t-transparent rounded-full animate-spin"></div> : "Login Now"}
                     </button>
                 </form>
                 {/* "or" between two buttons */}
