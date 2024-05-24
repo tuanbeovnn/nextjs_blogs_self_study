@@ -10,7 +10,7 @@ const BlogDetail = () => {
     const dispatch = useDispatch();
     const { postDetail, loading } = useSelector((state: any) => state.post);
     const { user } = useSelector((state: any) => state.auth);
-    
+
     useEffect(() => {
         dispatch(postFetchById(params.blogId.toString()));
     }, [dispatch, params.blogId]);
@@ -52,13 +52,12 @@ const BlogDetail = () => {
                 ></textarea>
 
                 <div className="flex justify-end">
-                    <button
-                        disabled={!user && !user?.id}
+                    {!user && !user?.id ? "" : <button
                         type="submit"
                         className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
                         Post comment
-                    </button>
+                    </button>}
                 </div>
             </form>
 
