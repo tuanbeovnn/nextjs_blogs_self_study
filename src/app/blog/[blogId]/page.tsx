@@ -40,19 +40,19 @@ const BlogDetail = () => {
                 }}
             ></div>
             {/* Comment Post */}
-            <h2 className="text-2xl font-semibold mb-4 mt-6 text-gray-700">
+            <h2 className="text-2xl font-semibold mb-4 mt-6 text-gray-700 ">
                 Discussion (20)
             </h2>
             <form className="mb-5">
                 <textarea
-                    className="w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    className="w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border border-blue-200"
                     rows={6}
                     placeholder="Write a comment..."
                 ></textarea>
                 <div className="flex justify-end">
                     <button
                         type="submit"
-                        className="mt-3 p-3 flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+                        className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
                         Post comment
                     </button>
@@ -60,7 +60,7 @@ const BlogDetail = () => {
             </form>
 
             <div className="space-y-6">
-                <div className="flex items-start bg-gray-50 p-5 mb-10 rounded-lg shadow-sm">
+                <div className="flex items-start bg-gray-50 p-5 mb-10 rounded-lg shadow-sm border border-blue-200">
                     <img
                         className="w-12 h-12 rounded-full object-cover"
                         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -74,6 +74,14 @@ const BlogDetail = () => {
                                 </h3>
                                 <span className="text-gray-500 text-sm">Feb. 8, 2022</span>
                             </div>
+                            <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                className="inline-flex items-center p-2 text-sm font-medium text-center bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  "
+                                type="button">
+                                <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                    <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                </svg>
+                                <span className="sr-only">Comment settings</span>
+                            </button>
                         </div>
                         <p className="mt-2 text-gray-700 leading-6">
                             Very straight-to-point article. Really worth time reading. Thank
@@ -103,6 +111,14 @@ const BlogDetail = () => {
                                                 Feb. 9, 2022
                                             </span>
                                         </div>
+                                        <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                            className="inline-flex items-center p-2 text-sm font-medium text-center bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  "
+                                            type="button">
+                                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                            </svg>
+                                            <span className="sr-only">Comment settings</span>
+                                        </button>
                                     </div>
                                     <p className="mt-2 text-gray-700 leading-6">
                                         I totally agree with you, Michael! The strategy is indeed
@@ -129,6 +145,14 @@ const BlogDetail = () => {
                                                             Feb. 10, 2022
                                                         </span>
                                                     </div>
+                                                    <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                                        className="inline-flex items-center p-2 text-sm font-medium text-center bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  "
+                                                        type="button">
+                                                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                                        </svg>
+                                                        <span className="sr-only">Comment settings</span>
+                                                    </button>
                                                 </div>
                                                 <p className="mt-2 text-gray-700 leading-6">
                                                     Great point, Anna. Having a solid strategy makes all the
@@ -159,6 +183,14 @@ const BlogDetail = () => {
                                                 Feb. 10, 2022
                                             </span>
                                         </div>
+                                        <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                            className="inline-flex items-center p-2 text-sm font-medium text-center bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  "
+                                            type="button">
+                                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                            </svg>
+                                            <span className="sr-only">Comment settings</span>
+                                        </button>
                                     </div>
                                     <p className="mt-2 text-gray-700 leading-6">
                                         Great point, Anna. Having a solid strategy makes all the
@@ -185,6 +217,14 @@ const BlogDetail = () => {
                                                             Feb. 10, 2022
                                                         </span>
                                                     </div>
+                                                    <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                                        className="inline-flex items-center p-2 text-sm font-medium text-center bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50  "
+                                                        type="button">
+                                                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                                                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                                        </svg>
+                                                        <span className="sr-only">Comment settings</span>
+                                                    </button>
                                                 </div>
                                                 <p className="mt-2 text-gray-700 leading-6">
                                                     Great point, Anna. Having a solid strategy makes all the
