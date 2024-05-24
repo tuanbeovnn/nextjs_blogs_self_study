@@ -45,8 +45,8 @@ const BlogDetail = () => {
             </h2>
             <form className="mb-5">
                 <textarea
-                    className="w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border border-blue-200"
-                    rows={6}
+                    className="w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border-blue-200 resize-none"
+                    rows={3}
                     placeholder="Write a comment..."
                 ></textarea>
                 <div className="flex justify-end">
