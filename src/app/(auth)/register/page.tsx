@@ -22,7 +22,7 @@ const schema = yup.object().shape({
     fullname: yup.string().required("Full Name is required").max(50, "Full Name must be at most 50 characters"),
     email: yup.string().email().required("Email is required"),
     password: yup.string().required("Password is required"),
-    confirm_password: yup.string().required("Confirm Password is required"),
+    confirm_password: yup.string().oneOf([yup.ref('password')], 'Passwords must match').required('Confirm Password is required'),
     terms_and_conditions: yup.boolean().required().oneOf([true], "Please accept the terms and conditions")
 });
 
