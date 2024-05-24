@@ -2,7 +2,6 @@ import axios from 'axios';
 import { apiURL } from '../../config/config';
 
 export const requestsLogin = (data: object) => {
-    console.log("auth login request ", data)
     return axios.request({
         method: 'POST',
         url: apiURL + `/v1/auth/signin`,

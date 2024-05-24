@@ -28,6 +28,8 @@ function Login() {
     const { user, isAuthenticated } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
     const onSubmit = (values: FormValues) => {
+
+        console.log(values)
         if (isValid) {
             const data = {
                 email: values.email,

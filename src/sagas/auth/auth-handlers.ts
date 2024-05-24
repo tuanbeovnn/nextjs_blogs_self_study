@@ -5,43 +5,35 @@ import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { CallEffect, PutEffect, call, put } from 'redux-saga/effects';
 import { requestsAuthFetchMe, requestsAuthRegister, requestsFreshToken, requestsLogin } from './auth-requests';
-import { authUpdateUser } from './auth-slice';
+import { authLoginFailure, authLoginSuccess, authRegisterFailure, authRegisterSuccess, authUpdateUser } from './auth-slice';
 
-export function* handleAuthRegister(
-    action: RegisterAction
-): Generator<CallEffect<AxiosResponse> | PutEffect, void, AxiosResponse> {
-    const { payload } = action;
+export function* handleAuthRegister(action: { payload: object }) {
     try {
-        const response: AxiosResponse = yield call(requestsAuthRegister, payload);
+        const response: AxiosResponse = yield call(requestsAuthRegister, action.payload);
         if (response.status === 201) {
+            // If registration is successful, dispatch the success action
+            yield put(authRegisterSuccess());
             toast.success("Created new account successfully");
         }
     } catch (error: any) {
-        // Properly type the error based on your expected error object (e.g., AxiosError)
-        if (error.response && error.response.data) {
-            toast.error(error.response.data.message);
-        } else {
-            toast.error("An unexpected error occurred");
-        }
+        // If an unexpected error occurs (e.g., network error), dispatch the failure action with a generic error message
+        yield put(authRegisterFailure(error.response ? error.response.data.message : 'An unexpected error occurred'));
+        toast.error(error.response ? error.response.data.message : 'An unexpected error occurred');
     }
 }
 
-export function* handleAuthLoginRequest(action: LoginAction): Generator<CallEffect<AxiosResponse> | PutEffect, void, AxiosResponse> {
-    const { payload } = action;
+export function* handleAuthLoginRequest(action: { payload: object }) {
     try {
-        const response: AxiosResponse = yield call(requestsLogin, payload);
+        const response: AxiosResponse = yield call(requestsLogin, action.payload);
         if (response.status === 200) {
             saveToken(response.data.accessToken, response.data.refreshToken);
             yield call(handleAuthFetchMeRequest, { payload: response.data.accessToken });
+            yield put(authLoginSuccess());
             toast.success("Logged in successfully");
         }
     } catch (error: any) {
-        // Properly type the error based on your expected error object (e.g., AxiosError)
-        if (error.response && error.response.data) {
-            toast.error(error.response.data.message);
-        } else {
-            toast.error("An unexpected error occurred");
-        }
+        yield put(authLoginFailure(error.response ? error.response.data.message : 'An unexpected error occurred'));
+        toast.error(error.response ? error.response.data.message : 'An unexpected error occurred');
     }
 }
 
@@ -66,7 +58,6 @@ export function* handleAuthFetchMeRequest(action: any): Generator<CallEffect<Axi
         }
     }
 }
-
 
 export function* handleAuthRefreshTokenRequest(action: RefreshTokenAction): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
     const { payload } = action;

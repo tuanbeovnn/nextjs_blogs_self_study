@@ -1,27 +1,55 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+interface AuthState {
+    user: object | undefined;
+    accessToken: string | undefined;
+    isAuthenticated: boolean;
+    loading: boolean;
+    error: string | null;
+}
+
+const initialState: AuthState = {
+    user: undefined,
+    accessToken: undefined,
+    loading: false,
+    isAuthenticated: false,
+    error: null,
+};
 
 const authSlice = createSlice({
     name: 'blogs',
-    initialState: {
-        user: undefined,
-        accessToken: undefined,
-        isAuthenticated: false,
-    },
+    initialState,
     reducers: {
-        authLogin: (state, action) => {
-            return {
-                ...state,
-            }
+        authLogin: (state, action: PayloadAction<object>) => {
+            state.loading = true;
         },
-        authRegister: (state, action) => ({
-            ...state,
-            ...action.payload,
-        }),
+        authLoginSuccess: (state) => {
+            state.isAuthenticated = true;
+            state.loading = false;
+            state.error = null;
+        },
+        authLoginFailure: (state, action: PayloadAction<string>) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
+        authRegister: (state, action: PayloadAction<object>) => {
+            state.loading = true;
+        },
+        authRegisterSuccess: (state) => {
+            state.loading = false;
+            state.error = null;
+        },
+        authRegisterFailure: (state, action: PayloadAction<string>) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
         authUpdateUser: (state, action) => ({
+            ...state,
             user: action.payload.user,
             accessToken: action.payload.accessToken,
-            isAuthenticated: true
+            isAuthenticated: true,
+            loading: false,
+            error: null
         }),
         authFetchMe: (state, action) => ({
             ...state,
@@ -30,13 +58,24 @@ const authSlice = createSlice({
         authRefreshToken: (state, action) => ({
             ...state,
             ...action.payload,
-        
+
         }),
         authLogout: (state) => state,
 
     }
 })
 
-export const { authLogin, authRegister, authUpdateUser, authFetchMe, authRefreshToken, authLogout } = authSlice.actions;
+export const {
+    authLogin,
+    authLoginSuccess,
+    authLoginFailure,
+    authRegister,
+    authRegisterSuccess,
+    authRegisterFailure,
+    authUpdateUser,
+    authFetchMe,
+    authRefreshToken,
+    authLogout,
+} = authSlice.actions;
 
 export default authSlice.reducer;
