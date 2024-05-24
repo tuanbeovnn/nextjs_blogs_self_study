@@ -5,13 +5,12 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 const BlogDetail = () => {
     const params = useParams();
-    const { postDetail, loading } = useSelector((state: any) => state.post);
     const dispatch = useDispatch();
-
+    const { postDetail, loading } = useSelector((state: any) => state.post);
+    const { user } = useSelector((state: any) => state.auth);
+    
     useEffect(() => {
         dispatch(postFetchById(params.blogId.toString()));
     }, [dispatch, params.blogId]);
@@ -45,12 +44,16 @@ const BlogDetail = () => {
             </h2>
             <form className="mb-5">
                 <textarea
-                    className="w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border-blue-200 resize-none"
+                    disabled={!user && !user?.id}
+                    className={`w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border-blue-200 resize-none ${!user ? 'bg-gray-200 cursor-not-allowed' : ''
+                        }`}
                     rows={3}
-                    placeholder="Write a comment..."
+                    placeholder={user && user?.id ? "Write a comment..." : "Please log in to write a comment"}
                 ></textarea>
+
                 <div className="flex justify-end">
                     <button
+                        disabled={!user && !user?.id}
                         type="submit"
                         className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                     >
