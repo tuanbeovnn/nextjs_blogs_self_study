@@ -77,7 +77,7 @@ const BlogDetail = () => {
             </form>
 
             <div className="space-y-6">
-                <div className="flex items-start bg-gray-50 p-5 mb-10 rounded-lg shadow-sm border border-blue-200">
+                <div className="flex items-start p-5 mb-10 rounded-lg shadow-sm border border-blue-100">
                     <img
                         className="w-12 h-12 rounded-full object-cover"
                         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -124,10 +124,11 @@ const BlogDetail = () => {
                             knowledge of the design tools are as important as the creation of
                             the design strategy.
                         </p>
-                        <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
-                            Reply
-                        </button>
 
+                        {!user && !user?.id ? ""
+                            : <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
+                                Reply
+                            </button>}
                         {/* <!-- Replies --> */}
                         <div className="mt-6 pl-6 border-l-2 border-gray-200 space-y-6">
                             <div className="flex items-start">
@@ -159,9 +160,10 @@ const BlogDetail = () => {
                                         I totally agree with you, Michael! The strategy is indeed
                                         crucial.
                                     </p>
-                                    <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
-                                        Reply
-                                    </button>
+                                    {!user && !user?.id ? ""
+                                        : <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
+                                            Reply
+                                        </button>}
                                     <div className="mt-6 pl-6 border-l-2 border-gray-200 space-y-6">
 
                                         <div className="flex items-start">
@@ -193,9 +195,10 @@ const BlogDetail = () => {
                                                     Great point, Anna. Having a solid strategy makes all the
                                                     difference.
                                                 </p>
-                                                <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
-                                                    Reply
-                                                </button>
+                                                {!user && !user?.id ? ""
+                                                    : <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
+                                                        Reply
+                                                    </button>}
                                             </div>
                                         </div>
                                     </div>
@@ -231,9 +234,10 @@ const BlogDetail = () => {
                                         Great point, Anna. Having a solid strategy makes all the
                                         difference.
                                     </p>
-                                    <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
-                                        Reply
-                                    </button>
+                                    {!user && !user?.id ? ""
+                                        : <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
+                                            Reply
+                                        </button>}
                                     <div className="mt-6 pl-6 border-l-2 border-gray-200 space-y-6">
 
                                         <div className="flex items-start">
@@ -265,9 +269,10 @@ const BlogDetail = () => {
                                                     Great point, Anna. Having a solid strategy makes all the
                                                     difference.
                                                 </p>
-                                                <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
-                                                    Reply
-                                                </button>
+                                                {!user && !user?.id ? ""
+                                                    : <button className="mt-3 text-blue-500 hover:underline focus:outline-none">
+                                                        Reply
+                                                    </button>}
                                             </div>
                                         </div>
                                     </div>
