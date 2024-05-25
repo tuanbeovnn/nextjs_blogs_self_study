@@ -120,7 +120,7 @@ export const Header = () => {
                                                 <Link href="/profile" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Profile</Link>
                                             </li>
                                             <li>
-                                                <Link href="/" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Earnings</Link>
+                                                <Link href="/newpost" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Add new post</Link>
                                             </li>
                                         </ul>
                                         <div className="py-2">
