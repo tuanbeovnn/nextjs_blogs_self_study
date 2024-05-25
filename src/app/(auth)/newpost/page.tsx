@@ -12,6 +12,9 @@ const AddNewPost = () => {
         setContent(value);
     };
 
+     // Quill modules configuration
+    
+
     return (
         <RequiredAuthPage>
             <div className="max-w-5xl mx-auto p-8 my-5">
@@ -98,6 +101,7 @@ const AddNewPost = () => {
                     </label>
                     <div className="appearance-none rounded w-full leading-tight focus:outline-none focus:shadow-outline h-60">
                         <ReactQuill
+                         theme='snow'
                             modules={modules}
                             value={content}
                             onChange={handleContentChange}
