@@ -58,7 +58,7 @@ const BlogDetail = () => {
             <form className="mb-5">
                 <textarea
                     disabled={!user && !user?.id}
-                    className={`w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border-blue-200 resize-none ${!user ? 'bg-gray-200 cursor-not-allowed' : ''
+                    className={`w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none ${!user ? 'bg-gray-200 cursor-not-allowed' : ''
                         }`}
                     rows={1}
                     placeholder={user && user?.id ? "Write a comment..." : "Please log in to write a comment"}
@@ -75,7 +75,7 @@ const BlogDetail = () => {
             </form>
 
             <div className="space-y-6">
-                <div className="flex items-start p-5 mb-10 rounded-lg shadow-sm border border-blue-100">
+                <div className="flex items-start p-5 mb-10 rounded-lg shadow-sm border">
                     <img
                         className="w-12 h-12 rounded-full object-cover"
                         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
