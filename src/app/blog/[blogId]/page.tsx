@@ -1,7 +1,7 @@
 "use client";
 import { Author, Badge } from "@/components";
 import { postFetchById } from "@/sagas/post/post-slice";
-import { getTagClass } from "@/utils/tagStyles";
+import { tagStyles } from "@/utils/tagStyles";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,10 @@ const BlogDetail = () => {
         dispatch(postFetchById(params.blogId.toString()));
     }, [dispatch, params.blogId]);
 
+    const getTagClass = (tagName: string): string => {
+        return tagStyles[tagName] || tagStyles.Default;
+    };
+    
     const tags = postDetail?.tags || [];
 
     return (
@@ -42,7 +46,7 @@ const BlogDetail = () => {
                 <div className="text-base font-semibold mb-4 mt-6 text-gray-700 flex items-center">
                     <h2 className="mr-2">Tags:</h2>
                     <div className="flex flex-wrap">
-                    {tags.map((tag: string) => (
+                        {tags.map((tag: string) => (
                             <span key={tag} className={`text-xs font-medium mr-2 px-2.5 py-1 rounded ${getTagClass(tag)}`}>
                                 {tag}
                             </span>

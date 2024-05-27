@@ -1,10 +1,9 @@
 "use client";
-import { Badge, Author, Ads, Post } from "@/components";
+import { Ads, Author, Badge, Post } from "@/components";
 import { fetchByCategory, postFetchByCategory } from "@/sagas/post/post-slice";
 import { PostType } from "@/types";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CategoryBlog = () => {

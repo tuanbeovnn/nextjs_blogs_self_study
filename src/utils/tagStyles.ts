@@ -1,5 +1,5 @@
 
-const tagStyles: { [key: string]: string } = {
+export const tagStyles: { [key: string]: string } = {
     TECHNOLOGY: "bg-gray-100 text-gray-800 dark:text-gray-400 border border-gray-500",
     WEB: "bg-red-100 text-red-800 dark:text-red-400 border border-red-400",
     IT: "bg-green-100 text-green-800 dark:text-green-400 border border-green-400",
@@ -9,8 +9,4 @@ const tagStyles: { [key: string]: string } = {
     Purple: "bg-purple-100 text-purple-800 dark:text-purple-400 border border-purple-400",
     Pink: "bg-pink-100 text-pink-800 dark:text-pink-400 border border-pink-400",
     // Add other tags as needed
-};
-
-export const getTagClass = (tagName: string): string => {
-    return tagStyles[tagName] || tagStyles.Default;
 };
