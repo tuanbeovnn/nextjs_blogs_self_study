@@ -22,7 +22,7 @@ const BlogDetail = () => {
         <div className="max-w-[864px] mx-auto md:px-8 px-4">
             <div className="mb-8">
                 <Badge label={postDetail?.category?.name} />
-                <h1 className="font-semibold text-4xl text-[#181A2A] mt-4 mb-5">
+                <h1 className="font-semibold text-4xl text-[#181A2A] mt-4 mb-5 text-justify">
                     {postDetail?.title}
                 </h1>
                 <h6 className="font-semibold text-lg italic text-[#181A2A] mt-4 mb-5">{postDetail.shortDescription}</h6>
@@ -32,7 +32,7 @@ const BlogDetail = () => {
                     createdAt={new Date()}
                 />
             </div>
-            <div className="pb-[2rem] text-[#3B3C4A] font-[400] text-xl leading-8"
+            <div className="pb-[2rem] text-[#3B3C4A] font-[400] text-xl leading-8 text-justify"
                 dangerouslySetInnerHTML={{
                     __html: postDetail?.content
                 }}
@@ -60,7 +60,7 @@ const BlogDetail = () => {
                     disabled={!user && !user?.id}
                     className={`w-full p-5 text-gray-700 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none border-blue-200 resize-none ${!user ? 'bg-gray-200 cursor-not-allowed' : ''
                         }`}
-                    rows={3}
+                    rows={1}
                     placeholder={user && user?.id ? "Write a comment..." : "Please log in to write a comment"}
                 ></textarea>
 
