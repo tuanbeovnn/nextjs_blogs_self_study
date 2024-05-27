@@ -1,8 +1,5 @@
 "use client"
-import { authRefreshToken, authUpdateUser } from '@/sagas/auth/auth-slice';
-import { getToken, logOut } from '@/utils/auth';
-import { PropsWithChildren, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { PropsWithChildren } from 'react';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
 
