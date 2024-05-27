@@ -17,12 +17,10 @@ const BlogDetail = () => {
     }, [dispatch, params.blogId]);
 
     const getTagClass = (tagName: string): string => {
-        return tagStyles[tagName].toString();
+        return tagStyles[tagName];
     };
 
     const tags = postDetail?.tags;
-    const a = getTagClass('TECHNOLOGY')
-
 
     return (
         <div className="max-w-[864px] mx-auto md:px-8 px-4">
