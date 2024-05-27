@@ -25,6 +25,7 @@ const BlogDetail = () => {
                 <h1 className="font-semibold text-4xl text-[#181A2A] mt-4 mb-5">
                     {postDetail?.title}
                 </h1>
+                <h6 className="font-semibold text-lg italic text-[#181A2A] mt-4 mb-5">{postDetail.shortDescription}</h6>
                 <Author
                     avatar="https://source.unsplash.com/random"
                     name={postDetail?.createdBy?.name}
