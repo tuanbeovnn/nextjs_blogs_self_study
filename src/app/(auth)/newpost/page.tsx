@@ -12,8 +12,8 @@ const AddNewPost = () => {
         setContent(value);
     };
 
-     // Quill modules configuration
-    
+    // Quill modules configuration
+
 
     return (
         <RequiredAuthPage>
@@ -55,12 +55,27 @@ const AddNewPost = () => {
                     >
                         Tags
                     </label>
-                    <input
+                    <div
                         className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="tags"
-                        type="text"
-                        placeholder="Enter tags separated by commas"
-                    />
+                    >
+                        <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:text-blue-400 border border-blue-400">Default
+                            <button type="button" className="inline-flex items-center p-1 ms-2 text-sm bg-transparent rounded-sm hover:bg-blue-200  dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span className="sr-only">Remove badge</span>
+                            </button>
+                        </span>
+                        <span className="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:text-gray-400 border border-gray-500">Dark
+                            <button type="button" className="inline-flex items-center p-1 ms-2 text-sm bg-transparent rounded-sm hover:bg-blue-200  dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span className="sr-only">Remove badge</span>
+                            </button>
+                        </span>
+                    </div>
                 </div>
 
                 <div className="mb-5">
@@ -101,7 +116,7 @@ const AddNewPost = () => {
                     </label>
                     <div className="appearance-none rounded w-full leading-tight focus:outline-none focus:shadow-outline h-60">
                         <ReactQuill
-                         theme='snow'
+                            theme='snow'
                             modules={modules}
                             value={content}
                             onChange={handleContentChange}

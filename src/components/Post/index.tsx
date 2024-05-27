@@ -14,7 +14,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
             <div className="relative block pt-[67%]">
                 <img
                     className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg"
-                    src="https://source.unsplash.com/random"
+                    src="https://picsum.photos/seed/picsum/400/500"
                     alt=""
                 />
             </div>
@@ -28,7 +28,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                     {post?.title}
                 </Link>
                 <Author
-                    avatar="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    avatar="https://picsum.photos/seed/picsum/400/500"
                     name={post?.createdBy.name}
                     createdAt={post?.createdDate}
                 />

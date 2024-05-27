@@ -31,7 +31,7 @@ const BlogDetail = () => {
                 </h1>
                 <h6 className="font-semibold text-lg italic text-[#181A2A] mt-4 mb-5">{postDetail.shortDescription}</h6>
                 <Author
-                    avatar="https://source.unsplash.com/random"
+                    avatar="https://picsum.photos/seed/picsum/400/500"
                     name={postDetail?.createdBy?.name}
                     createdAt={new Date()}
                 />
