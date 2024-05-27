@@ -1,6 +1,7 @@
 "use client";
 import { Author, Badge } from "@/components";
 import { postFetchById } from "@/sagas/post/post-slice";
+import { getTagClass } from "@/utils/tagStyles";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,9 +16,8 @@ const BlogDetail = () => {
         dispatch(postFetchById(params.blogId.toString()));
     }, [dispatch, params.blogId]);
 
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
+    const tags = postDetail?.tags || [];
+
     return (
         <div className="max-w-[864px] mx-auto md:px-8 px-4">
             <div className="mb-8">
@@ -42,14 +42,11 @@ const BlogDetail = () => {
                 <div className="text-base font-semibold mb-4 mt-6 text-gray-700 flex items-center">
                     <h2 className="mr-2">Tags:</h2>
                     <div className="flex flex-wrap">
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-blue-400 border border-blue-400">Default</span>
-                        <span className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-gray-400 border border-gray-500">Dark</span>
-                        <span className="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-red-400 border border-red-400">Red</span>
-                        <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-green-400 border border-green-400">Green</span>
-                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-yellow-300 border border-yellow-300">Yellow</span>
-                        <span className="bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-indigo-400 border border-indigo-400">Indigo</span>
-                        <span className="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-purple-400 border border-purple-400">Purple</span>
-                        <span className="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:text-pink-400 border border-pink-400">Pink</span>
+                    {tags.map((tag: string) => (
+                            <span key={tag} className={`text-xs font-medium mr-2 px-2.5 py-1 rounded ${getTagClass(tag)}`}>
+                                {tag}
+                            </span>
+                        ))}
                     </div>
                 </div>
             </div>
