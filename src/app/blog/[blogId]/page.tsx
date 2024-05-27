@@ -17,10 +17,12 @@ const BlogDetail = () => {
     }, [dispatch, params.blogId]);
 
     const getTagClass = (tagName: string): string => {
-        return tagStyles[tagName] || tagStyles.Default;
+        return tagStyles[tagName].toString();
     };
-    
-    const tags = postDetail?.tags || [];
+
+    const tags = postDetail?.tags;
+    const a = getTagClass('TECHNOLOGY')
+
 
     return (
         <div className="max-w-[864px] mx-auto md:px-8 px-4">
@@ -46,8 +48,8 @@ const BlogDetail = () => {
                 <div className="text-base font-semibold mb-4 mt-6 text-gray-700 flex items-center">
                     <h2 className="mr-2">Tags:</h2>
                     <div className="flex flex-wrap">
-                        {tags.map((tag: string) => (
-                            <span key={tag} className={`text-xs font-medium mr-2 px-2.5 py-1 rounded ${getTagClass(tag)}`}>
+                        {tags?.map((tag: string) => (
+                            <span key={tag} className={getTagClass(tag) + ` text-xs font-medium mr-2 px-2.5 py-1 rounded`}>
                                 {tag}
                             </span>
                         ))}
