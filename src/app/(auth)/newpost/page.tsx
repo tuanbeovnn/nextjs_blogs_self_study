@@ -12,6 +12,7 @@ import * as yup from "yup";
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
     shortDescription: yup.string().required("Short Description is required"),
+    thumbnail: yup.string().required("Thumbnail is required"),
 });
 const AddNewPost = () => {
     const [tags, setTags] = useState<string[]>([]);
@@ -37,6 +38,7 @@ const AddNewPost = () => {
 
     const { handleSubmit, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
+    console.log(errors)
     const onSubmit = (values: object) => {
         console.log(values)
         if (isValid) {
@@ -80,7 +82,6 @@ const AddNewPost = () => {
                                     ))}
                                 </select>
                             </div>
-
                         </div>
                     </div>
                     <div className="mb-5">
@@ -112,12 +113,7 @@ const AddNewPost = () => {
                             <ReactQuill theme="snow" modules={modules} value={content} onChange={handleContentChange} style={{ height: '200px' }} />
                         </div>
                     </div>
-                    <div className="mb-5">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="thumbnail">
-                            Thumbnail Image
-                        </label>
-                        <input className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="thumbnail" type="file" accept="image/*" />
-                    </div>
+                    <InputHook control={control} name="thumbnail"  id="thumbnail" type="file" label="Thumbnail Image"/>
                     <div className="flex items-center justify-between">
                         <button type="submit" className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                             Publish
