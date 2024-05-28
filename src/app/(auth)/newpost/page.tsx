@@ -4,11 +4,14 @@ import DropdownHook from "@/components/DropdownHook/DropdownHook";
 import InputHook from "@/components/Input/InputHook";
 import QuillEditorHook from "@/components/QuillEditorHook/QuillEditorHook";
 import { modules } from "@/config/config";
+import { fetchByCategory } from "@/sagas/post/post-slice";
+import { CategoryItemType } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 // Define the schema
 const schema = yup.object().shape({
@@ -19,13 +22,15 @@ const schema = yup.object().shape({
     content: yup
         .string()
         .required("Content is required")
-        .min(200, "Content must be at least 200 characters"),
+        .min(200, "Content must be at least 200 characters")
 
 });
 const AddNewPost = () => {
     const [tags, setTags] = useState<string[]>([]);
     const [availableTags, setAvailableTags] = useState<string[]>(["Web", "Design", "Programming", "Technology"]);
     const [content, setContent] = useState<string>("");
+    const dispatch = useDispatch();
+    const { listCatagory, loading } = useSelector((state: any) => state.post);
 
     const handleTagSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
@@ -52,6 +57,10 @@ const AddNewPost = () => {
 
         }
     }
+    useEffect(() => {
+        dispatch(fetchByCategory());
+    }, [dispatch]);
+
     return (
         <RequiredAuthPage>
             <div className="max-w-5xl mx-auto p-8 my-5">
@@ -95,19 +104,10 @@ const AddNewPost = () => {
                         control={control}
                         name="category"
                         label="Category"
-                        options={[
-                            { value: "Viet Nam", label: "Viet Nam" },
-                            { value: "USA", label: "USA" },
-                            { value: "Japan", label: "Japan" },
-                            { value: "Germany", label: "Germany" },
-                            { value: "China", label: "China" },
-                            { value: "Canada", label: "Canada" },
-                            { value: "Australia", label: "Australia" },
-                            { value: "UK", label: "UK" },
-                            { value: "France", label: "France" },
-                            { value: "Spain", label: "Spain" },
-                            { value: "Russia", label: "Russia" }
-                        ]}
+                        options={listCatagory?.map((category: CategoryItemType) => ({
+                            value: category.id,
+                            label: category.name
+                        }))}
                     />
                     <QuillEditorHook control={control} name="content" label="Content" modules={modules} />
                     <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />

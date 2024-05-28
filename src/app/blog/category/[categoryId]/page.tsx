@@ -50,6 +50,7 @@ const CategoryBlog = () => {
                         name="Tracey Wilson"
                         createdAt="August 20, 2022"
                         light
+                        id="null"
                     />
                 </div>
             </div>
