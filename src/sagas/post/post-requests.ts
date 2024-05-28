@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { apiURL } from '../../config/config';
 
-export const requestsPostFetchFeed = () => {
+export const requestsPostFetchFeed = (params: string) => {
     return axios.request({
         method: 'GET',
-        url: apiURL + `/v1/public/posts/feed`
+        url: apiURL + `/v1/public/posts/feed${params}`
     })
 }
 
@@ -23,7 +23,7 @@ export const requestsGetPostByCategory = (categoryId: string) => {
 };
 
 
-export const requestsCategoryFetch= () => {
+export const requestsCategoryFetch = () => {
     return axios.request({
         method: 'GET',
         url: apiURL + `/v1/public/category`
