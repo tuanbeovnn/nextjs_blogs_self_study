@@ -1,7 +1,6 @@
 "use client"
 import Image from 'next/image';
-import LogoIcon from "../../app/assets/images/logo-notext.png";
-import EmailIcon from "../../app/assets/images/mail.png";
+import LogoIcon from "../../../public/assets/images/logo-notext.png";
 export const Footer = () => {
     return (
         <footer className="bg-[#F6F6F7] pt-16">
