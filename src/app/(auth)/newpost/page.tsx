@@ -1,6 +1,8 @@
 "use client";
 import RequiredAuthPage from "@/components/Auth";
+import DropdownHook from "@/components/DropdownHook/DropdownHook";
 import InputHook from "@/components/Input/InputHook";
+import QuillEditorHook from "@/components/QuillEditorHook/QuillEditorHook";
 import { modules } from "@/config/config";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
@@ -13,6 +15,12 @@ const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
     shortDescription: yup.string().required("Short Description is required"),
     thumbnail: yup.string().required("Thumbnail is required"),
+    category: yup.string().required("Category is required"),
+    content: yup
+        .string()
+        .required("Content is required")
+        .min(200, "Content must be at least 200 characters"),
+
 });
 const AddNewPost = () => {
     const [tags, setTags] = useState<string[]>([]);
@@ -36,9 +44,8 @@ const AddNewPost = () => {
         setContent(value);
     };
 
-    const { handleSubmit, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+    const { handleSubmit, register, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
-    console.log(errors)
     const onSubmit = (values: object) => {
         console.log(values)
         if (isValid) {
@@ -84,36 +91,26 @@ const AddNewPost = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mb-5">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
-                            Category
-                        </label>
-                        <div className="md:col-span-4">
-                            <select className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="category" id="category">
-                                <option value="">Select category</option>
-                                <option value="Viet Nam">Viet Nam</option>
-                                <option value="USA">USA</option>
-                                <option value="Japan">Japan</option>
-                                <option value="Germany">Germany</option>
-                                <option value="China">China</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Australia">Australia</option>
-                                <option value="UK">UK</option>
-                                <option value="France">France</option>
-                                <option value="Spain">Spain</option>
-                                <option value="Russia">Russia</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="mb-5">
-                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="content">
-                            Content
-                        </label>
-                        <div className="appearance-none rounded w-full leading-tight focus:outline-none focus:shadow-outline h-60">
-                            <ReactQuill theme="snow" modules={modules} value={content} onChange={handleContentChange} style={{ height: '200px' }} />
-                        </div>
-                    </div>
-                    <InputHook control={control} name="thumbnail"  id="thumbnail" type="file" label="Thumbnail Image"/>
+                    <DropdownHook
+                        control={control}
+                        name="category"
+                        label="Category"
+                        options={[
+                            { value: "Viet Nam", label: "Viet Nam" },
+                            { value: "USA", label: "USA" },
+                            { value: "Japan", label: "Japan" },
+                            { value: "Germany", label: "Germany" },
+                            { value: "China", label: "China" },
+                            { value: "Canada", label: "Canada" },
+                            { value: "Australia", label: "Australia" },
+                            { value: "UK", label: "UK" },
+                            { value: "France", label: "France" },
+                            { value: "Spain", label: "Spain" },
+                            { value: "Russia", label: "Russia" }
+                        ]}
+                    />
+                    <QuillEditorHook control={control} name="content" label="Content" modules={modules} />
+                    <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />
                     <div className="flex items-center justify-between">
                         <button type="submit" className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                             Publish
