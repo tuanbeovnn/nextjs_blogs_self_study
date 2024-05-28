@@ -10,3 +10,7 @@ export const tagStyles: { [key: string]: string } = {
     Pink: "bg-pink-100 text-pink-800 dark:text-pink-400 border border-pink-400",
     // Add other tags as needed
 };
+
+export const getTagClass = (tagName: string): string => {
+    return tagStyles[tagName] || tagStyles.Default;
+};
