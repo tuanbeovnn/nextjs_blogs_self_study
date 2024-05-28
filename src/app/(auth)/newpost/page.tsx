@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill styles
+import "react-quill/dist/quill.snow.css";
 import * as yup from "yup";
 // Define the schema
 const schema = yup.object().shape({
@@ -38,7 +38,6 @@ const AddNewPost = () => {
     const { handleSubmit, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
     const onSubmit = (values: object) => {
-
         console.log(values)
         if (isValid) {
 
@@ -55,7 +54,6 @@ const AddNewPost = () => {
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tags">
                             Tags
                         </label>
-
                         <div className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tags">
                             {tags.map((tag, index) => (
                                 <span key={index} className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-1 rounded dark:text-blue-400 border border-blue-400">
@@ -121,7 +119,7 @@ const AddNewPost = () => {
                         <input className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="thumbnail" type="file" accept="image/*" />
                     </div>
                     <div className="flex items-center justify-between">
-                        <button className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out" type="button">
+                        <button type="submit" className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                             Publish
                         </button>
                     </div>
