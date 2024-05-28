@@ -30,6 +30,7 @@ const BlogDetail = () => {
                     avatar="https://picsum.photos/seed/picsum/400/500"
                     name={postDetail?.createdBy?.name}
                     createdAt={new Date()}
+                    id={postDetail?.createdBy?.id}
                 />
             </div>
             <div className="pb-[2rem] text-[#3B3C4A] font-[400] text-xl leading-8 text-justify"

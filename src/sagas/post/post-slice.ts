@@ -8,6 +8,7 @@ interface PostsState {
     loading: boolean;
     postDetail: PostType | {};
     listPostByCategory: PostType[];
+    listPostByUserId: PostType[];
     listCatagory: CategoryItemType[];
 
 }
@@ -17,6 +18,7 @@ const initialState: PostsState = {
     loading: false,
     postDetail: {},
     listPostByCategory: [],
+    listPostByUserId: [],
     listCatagory: [],
 };
 
@@ -65,6 +67,16 @@ const postSlice = createSlice({
         fetchByCategoryFailure: (state) => {
             state.loading = false;
         },
+        postFetchByUserId: (state, action: PayloadAction<string>) => {
+            state.loading = true;
+        },
+        postFetchByUserIdSuccess: (state, action: PayloadAction<PostType[]>) => {
+            state.listPostByUserId = action.payload;
+            state.loading = false;
+        },
+        postFetchByUserIdFailure: (state) => {
+            state.loading = false;
+        },
     },
 });
 
@@ -81,6 +93,9 @@ export const {
     fetchByCategory,
     fetchByCategorySuccess,
     fetchByCategoryFailure,
+    postFetchByUserId,
+    postFetchByUserIdSuccess,
+    postFetchByUserIdFailure,
 } = postSlice.actions;
 
 export default postSlice.reducer;

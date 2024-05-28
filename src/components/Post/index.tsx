@@ -31,6 +31,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                     avatar="https://picsum.photos/seed/picsum/400/500"
                     name={post?.createdBy.name}
                     createdAt={post?.createdDate}
+                    id={post?.createdBy.id}
                 />
 
             </div>

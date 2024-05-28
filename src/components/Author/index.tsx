@@ -5,14 +5,15 @@ interface Props {
     avatar: string,
     name: string,
     createdAt: Date | string | number,
-    light?: boolean
+    id: string,
+    light?: boolean,
 
 }
 
-export const Author = ({ avatar, name, createdAt, light = false }: Props) => {
+export const Author = ({ avatar, name, createdAt, id, light = false }: Props) => {
 
     return (
-        <Link href={`/author/:id`} className="flex flex-wrap items-center">
+        <Link href={`/author/${id}`} className="flex flex-wrap items-center">
             <img
                 className="w-10 h-10 object-cover object-center rounded-full mr-3"
                 src={avatar}

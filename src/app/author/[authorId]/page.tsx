@@ -1,7 +1,24 @@
-import { ListPost } from "@/components";
-import React from "react";
+"use client";
+import { Post } from "@/components";
+import { postFetchByUserId } from "@/sagas/post/post-slice";
+import { PostType } from "@/types";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const AuthorDetail = () => {
+
+    const dispatch = useDispatch();
+    const pathname = usePathname();
+    const segments = pathname.split('/');
+    const userIdFromParam = segments[segments.length - 1];
+
+    const { listPostByUserId } = useSelector((state: any) => state.post);
+
+    useEffect(() => {
+        dispatch(postFetchByUserId(userIdFromParam));
+    }, [dispatch, userIdFromParam]);
+
     return (
         <div className="max-w-7xl mx-auto md:px-8 px-4">
             <div className="md:p-12 p-6 mb-12 text-center rounded-xl bg-[#F6F6F7]">
@@ -48,8 +65,18 @@ const AuthorDetail = () => {
                 <div className="text-2xl text-[#181A2A] font-bold mb-8">
                     Latest Post
                 </div>
-
-                <ListPost />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {listPostByUserId && listPostByUserId.length > 0 ? (
+                        listPostByUserId.map((post: PostType) => (
+                            <Post
+                                key={post.id}
+                                post={post}
+                            />
+                        ))
+                    ) : (
+                        <p>No posts available.</p>
+                    )}
+                </div>
             </div>
         </div>
     );

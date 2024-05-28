@@ -15,6 +15,7 @@ export interface PostTag {
 }
 
 export interface CreatedByResponse {
+    id: string;
     name: string;
 }
 

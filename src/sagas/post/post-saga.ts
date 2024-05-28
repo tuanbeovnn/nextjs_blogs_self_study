@@ -1,13 +1,11 @@
-
 import { takeLatest } from 'redux-saga/effects';
-import { fetchByCategory, postFetchByCategory, postFetchById, postFetchFeed } from './post-slice'; // Update import statement
-import { handleFetchCategoryRequest, handlePostByCategoryRequest, handlePostByIdRequest, handlePostFeedRequest } from './post-handlers';
+import { fetchByCategory, postFetchByCategory, postFetchById, postFetchByUserId, postFetchFeed } from './post-slice';
+import { handleFetchCategoryRequest, handlePostByCategoryRequest, handlePostByIdRequest, handlePostByUserIdRequest, handlePostFeedRequest } from './post-handlers';
 
 export default function* postsSaga() {
     yield takeLatest(postFetchFeed.type, handlePostFeedRequest);
     yield takeLatest(postFetchById.type, handlePostByIdRequest);
     yield takeLatest(postFetchByCategory.type, handlePostByCategoryRequest);
     yield takeLatest(fetchByCategory.type, handleFetchCategoryRequest);
+    yield takeLatest(postFetchByUserId.type, handlePostByUserIdRequest);
 }
-
-

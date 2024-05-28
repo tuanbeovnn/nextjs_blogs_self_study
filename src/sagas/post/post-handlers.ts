@@ -12,12 +12,16 @@ import {
     postFetchById,
     postFetchByIdFailure,
     postFetchByIdSuccess,
+    postFetchByUserId,
+    postFetchByUserIdFailure,
+    postFetchByUserIdSuccess,
+    postFetchFeed,
     postFetchFeedFailure,
     postFetchFeedSuccess
 } from './post-slice';
 
 
-export function* handlePostFeedRequest(action: { payload: string }): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
+export function* handlePostFeedRequest(action: ReturnType<typeof postFetchFeed>): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
     try {
         const response: AxiosResponse = yield call(requestsPostFetchFeed, action.payload || "");
         if (response.status === 200) {
@@ -55,6 +59,20 @@ export function* handlePostByCategoryRequest(action: ReturnType<typeof postFetch
         yield put(postFetchByCategorySuccess(response.data.details.records));
     } catch (error: any) {
         yield put(postFetchByCategoryFailure());
+        if (error.response && error.response.data) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.error("An unexpected error occurred");
+        }
+    }
+}
+
+export function* handlePostByUserIdRequest(action: ReturnType<typeof postFetchByUserId>): Generator<any, void, AxiosResponse> {
+    try {
+        const response: AxiosResponse = yield call(requestsPostFetchFeed, "?userId=" + action.payload);
+        yield put(postFetchByUserIdSuccess(response.data.details.records));
+    } catch (error: any) {
+        yield put(postFetchByUserIdFailure());
         if (error.response && error.response.data) {
             toast.error(error.response.data.message);
         } else {
