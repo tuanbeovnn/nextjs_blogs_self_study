@@ -9,14 +9,13 @@ import { CategoryItemType } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 // Define the schema
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
-    shortDescription: yup.string().required("Short Description is required"),
+    shortDescription: yup.string().required("Short Description is required").min(100, "Content must be at least 100 characters"),
     thumbnail: yup.string().required("Thumbnail is required"),
     category: yup.string().required("Category is required"),
     content: yup
