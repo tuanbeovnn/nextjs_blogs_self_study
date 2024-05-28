@@ -24,7 +24,7 @@ export interface PostType {
     title: string;
     content: string;
     shortDescription: string;
-    thumnails: string[];
+    thumbnail: string[];
     images: string[];
     createdBy: CreatedByResponse;
     usersLikedPost: UserLikedPostResponse[];

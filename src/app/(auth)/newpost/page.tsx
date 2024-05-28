@@ -8,26 +8,25 @@ import { fetchByCategory } from "@/sagas/post/post-slice";
 import { CategoryItemType } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 // Define the schema
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
-    shortDescription: yup.string().required("Short Description is required").min(100, "Content must be at least 100 characters"),
+    shortDescription: yup.string().required("Short Description is required").min(1, "Content must be at least 100 characters"),
     thumbnail: yup.string().required("Thumbnail is required"),
     category: yup.string().required("Category is required"),
     content: yup
         .string()
         .required("Content is required")
-        .min(200, "Content must be at least 200 characters")
+        .min(1, "Content must be at least 200 characters")
 
 });
 const AddNewPost = () => {
     const [tags, setTags] = useState<string[]>([]);
     const [availableTags, setAvailableTags] = useState<string[]>(["Web", "Design", "Programming", "Technology"]);
-    const [content, setContent] = useState<string>("");
     const dispatch = useDispatch();
     const { listCatagory, loading } = useSelector((state: any) => state.post);
 
@@ -44,14 +43,15 @@ const AddNewPost = () => {
         setAvailableTags([...availableTags, tagToRemove]);
     };
 
-    const handleContentChange = (value: string) => {
-        setContent(value);
-    };
-
     const { handleSubmit, register, formState: { errors, isSubmitting, isValid, isDirty }, reset, control } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
 
+    const getBase64 = (file: File) => {
+    };
+
     const onSubmit = (values: object) => {
-        console.log(values)
+
+        console.log(values);
+
         if (isValid) {
 
         }
@@ -108,7 +108,21 @@ const AddNewPost = () => {
                             label: category.name
                         }))}
                     />
-                    <QuillEditorHook control={control} name="content" label="Content" modules={modules} />
+                    <Controller
+                        name='content'
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field: { value, onChange } }) => (
+                            <QuillEditorHook
+                                value={value || ""}
+                                label="Content"
+                                onChange={onChange}
+                                modules={modules}
+                            />
+                        )}
+                    />
+                    {errors && errors.content && <span className="text-red-500 text-sm">{errors.content.message}</span>}
+                    {/* <QuillEditorHook control={control} name="content" label="Content" modules={modules} onChange={handleContentChange} /> */}
                     <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />
                     <div className="flex items-center justify-between">
                         <button type="submit" className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out">
