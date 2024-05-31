@@ -9,12 +9,16 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
+
+    const randomImageUrl = `https://source.unsplash.com/random?sig=${Math.floor(
+        Math.random() * 2000
+    )}`;
     return (
         <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl h-full">
-            <div className="relative block pt-[67%]">
+            <div className="relative block pt-[67%] transition-transform duration-200 overflow-hidden group">
                 <img
-                    className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg"
-                    src="https://picsum.photos/seed/picsum/400/500"
+                    className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg group-hover:scale-110 duration-150"
+                    src={randomImageUrl}
                     alt=""
                 />
             </div>
@@ -28,7 +32,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                     {post?.title}
                 </Link>
                 <Author
-                    avatar="https://picsum.photos/seed/picsum/400/500"
+                    avatar={randomImageUrl}
                     name={post?.createdBy.name}
                     createdAt={post?.createdDate}
                     id={post?.createdBy.id}

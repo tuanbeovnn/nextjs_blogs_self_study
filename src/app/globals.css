@@ -49,6 +49,10 @@
             @apply opacity-100;
         }
     }
+     /* Carousel Slick */
+  .slider-container .slick-slide {
+    padding: 0 10px; 
+  }
 
     .test {}
 }

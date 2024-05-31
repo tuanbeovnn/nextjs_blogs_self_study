@@ -1,7 +1,8 @@
 "use client";
 import { Author, Badge } from "@/components";
+import RelatedPost from "@/components/RelatedPost";
 import { postFetchById } from "@/sagas/post/post-slice";
-import { getTagClass, tagStyles } from "@/utils/tagStyles";
+import { getTagClass } from "@/utils/tagStyles";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,6 +51,10 @@ const BlogDetail = () => {
                         ))}
                     </div>
                 </div>
+            </div>
+             {/* slide Post */}
+            <div className="mb-20">
+                <RelatedPost />
             </div>
 
             {/* Comment Post */}
