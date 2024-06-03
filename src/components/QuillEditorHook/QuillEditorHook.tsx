@@ -1,4 +1,5 @@
 import React from 'react';
+import { Control, useController } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 

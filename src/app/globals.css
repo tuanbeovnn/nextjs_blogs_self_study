@@ -54,5 +54,9 @@
     padding: 0 10px; 
   }
 
+  .custom-min-height {
+    min-height: calc(100vh - 245px);
+  }
+
     .test {}
 }
