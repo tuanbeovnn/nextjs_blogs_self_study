@@ -13,6 +13,12 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 
+export const getTextFromHTML = (data: string) => {
+    const container = document.createElement('div')
+    container.innerHTML = data
+    return container.textContent || container.innerText
+}
+
 // Define the schema
 const schema = yup.object().shape({
     title: yup.string().required("Title is required"),
@@ -22,7 +28,12 @@ const schema = yup.object().shape({
     tags: yup.array().min(2, "Please select at least more than one tag").required("Tags is required"),
     content: yup
         .string()
-        .required("Content is required")
+        .test("content", "Content is required", (value: any) => {
+            console.log(value)
+            const test = getTextFromHTML(value);
+            console.log("test", test)
+            return test.length > 0;
+        })
         .min(4, "Content must be at least 200 characters"),
 });
 
