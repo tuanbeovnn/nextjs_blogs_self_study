@@ -19,7 +19,7 @@ const schema = yup.object().shape({
     shortDescription: yup.string().required("Short Description is required").min(2, "Content must be at least 100 characters"),
     thumbnail: yup.string().required("Thumbnail is required"),
     category: yup.string().required("Category is required"),
-    tags: yup.array().min(1, "Please select at least one tag").required("Tags is required"),
+    tags: yup.array().min(2, "Please select at least more than one tag").required("Tags is required"),
     content: yup
         .string()
         .required("Content is required")
@@ -32,24 +32,30 @@ const AddNewPost = () => {
     const dispatch = useDispatch();
     const { listCatagory, loading } = useSelector((state: any) => state.post);
 
+    const { handleSubmit, register, formState: { errors, isSubmitting, isValid, isDirty }, control, setValue, trigger } = useForm({
+        resolver: yupResolver(schema),
+        mode: "onChange",
+    });
+
     const handleTagSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedTag = e.target.value;
         if (selectedTag && !tags.includes(selectedTag)) {
-            setTags([...tags, selectedTag]);
+            const newTags = [...tags, selectedTag];
+            setTags(newTags);
             setAvailableTags(availableTags.filter(tag => tag !== selectedTag));
-            e.target.value = "";
+            setValue('tags', newTags);  // Update the form state
+            trigger('tags');  // Manually trigger validation
+            e.target.value = "";  // Reset the select box
         }
     };
 
     const removeTag = (tagToRemove: string) => {
-        setTags(tags.filter(tag => tag !== tagToRemove));
+        const newTags = tags.filter(tag => tag !== tagToRemove);
+        setTags(newTags);
         setAvailableTags([...availableTags, tagToRemove]);
+        setValue('tags', newTags);  // Update the form state
+        trigger('tags');  // Manually trigger validation
     };
-
-    const { handleSubmit, register, formState: { errors, isSubmitting, isValid, isDirty }, control, setValue } = useForm({
-        resolver: yupResolver(schema),
-        mode: "onChange",
-    });
 
     const onSubmit = (values: object) => {
         console.log(values);
@@ -61,10 +67,6 @@ const AddNewPost = () => {
     useEffect(() => {
         dispatch(fetchByCategory());
     }, [dispatch]);
-
-    useEffect(() => {
-        setValue('tags', tags);  // Update the tags value in the form state
-    }, [tags, setValue]);
 
     return (
         <RequiredAuthPage>
@@ -102,9 +104,11 @@ const AddNewPost = () => {
                                         </option>
                                     ))}
                                 </select>
-                                {errors.tags && <p className="text-red-500 text-xs italic">{errors.tags.message}</p>}
+
                             </div>
                         </div>
+                        {errors.tags && <span className="text-red-500 text-sm">{errors.tags.message}</span>}
+
                     </div>
                     <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />
                     <DropdownHook
