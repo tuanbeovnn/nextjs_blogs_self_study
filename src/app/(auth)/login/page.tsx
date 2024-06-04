@@ -51,7 +51,7 @@ function Login() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto md:px-8 px-4 custom-min-height">
+        <div className="max-w-7xl mx-auto md:px-8 px-4">
             <div className="max-w-md mx-auto my-6 w-full bg-white rounded-lg shadow-inner p-6">
                 <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">
                     Login
