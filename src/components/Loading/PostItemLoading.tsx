@@ -7,33 +7,34 @@ import LoadingSkeleton from './LoadingSkeleton';
 const PostItemLoading = () => {
     return (
         <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl h-full">
-            <LoadingSkeleton width="100%" height="100%" radius="10px"></LoadingSkeleton>
             <div className="relative block pt-[67%] transition-transform duration-200 overflow-hidden group">
-                {/* <img
-                    className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-lg group-hover:scale-110 duration-150"
-                    src=""
-                    alt=""
-                /> */}
-                {/* <LoadingSkeleton ></LoadingSkeleton> */}
+                <LoadingSkeleton width="100%" height="100%" className="absolute top-0 left-0 object-cover object-center rounded-lg group-hover:scale-110 duration-150" radius="10px"></LoadingSkeleton>
             </div>
-
             <div className="mt-4 p-2">
-                <Badge mode="outline" label="" />
+                <div
+                    className={`inline-flex items-center justify-center rounded-md py-1 px-2.5 gap-1`}
+                >
+                    <span
+                        className="text-sm font-medium text-white"
+                    >
+                        <LoadingSkeleton width="80px" height="20px" radius="10px"></LoadingSkeleton>
+                    </span>
+                </div>
                 <Link
                     href=""
                     className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline"
                 >
-                    {/* {post?.title} */}
+                    <LoadingSkeleton width="100%" height="70%" className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline" radius="10px"></LoadingSkeleton>
+
                 </Link>
-                {/* <Author
-                    avatar={randomImageUrl}
-                    name={post?.createdBy.name}
-                    createdAt={post?.createdDate}
-                    id={post?.createdBy.id}
-                /> */}
-            {/* <LoadingSkeleton width="20%" height="10%" radius="10px"></LoadingSkeleton> */}
-
-
+                <Link href="" className="flex flex-wrap items-center">
+                    <LoadingSkeleton className="w-10 h-10 object-cover object-center rounded-full mr-3" width="40px" height="40px" radius="50px"></LoadingSkeleton>
+                    <span
+                        className="text-base font-medium mr-5 text-[#ffff] no-underline hover:underline"
+                    >
+                        <LoadingSkeleton width="270px" height="25px" radius="20px"></LoadingSkeleton>
+                    </span>
+                </Link>
             </div>
         </div>
     );

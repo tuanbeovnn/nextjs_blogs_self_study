@@ -10,12 +10,11 @@ import { postFetchFeed } from '@/sagas/post/post-slice';
 import { PostType } from '@/types';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { v4 } from "uuid";
+const itemsPerPage = 9;
 function Home() {
     const { listPost, loading } = useSelector((state: any) => state.post);
-    console.log(loading)
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(
             postFetchFeed()
@@ -43,12 +42,9 @@ function Home() {
                                 ))
                             ) : (
                                 <>
-                                    <PostItemLoading />
-                                    <PostItemLoading />
-                                    <PostItemLoading />
-                                    <PostItemLoading />
-                                    <PostItemLoading />
-                                    <PostItemLoading />
+                                    {new Array(itemsPerPage).fill(0).map(() => (
+                                        <PostItemLoading key={v4()}></PostItemLoading>
+                                    ))}
                                 </>
                             )}
                         </div>
