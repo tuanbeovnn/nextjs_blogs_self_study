@@ -18,6 +18,7 @@ const schema = yup.object().shape({
     shortDescription: yup.string().required("Short Description is required").min(1, "Content must be at least 100 characters"),
     thumbnail: yup.string().required("Thumbnail is required"),
     category: yup.string().required("Category is required"),
+    tags: yup.string().required("Tags is required"),
     content: yup
         .string()
         .required("Content is required")
@@ -99,6 +100,7 @@ const AddNewPost = () => {
                             </div>
                         </div>
                     </div>
+                    <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />
                     <DropdownHook
                         control={control}
                         name="category"
@@ -123,7 +125,6 @@ const AddNewPost = () => {
                     />
                     {errors && errors.content && <span className="text-red-500 text-sm">{errors.content.message}</span>}
                     {/* <QuillEditorHook control={control} name="content" label="Content" modules={modules} onChange={handleContentChange} /> */}
-                    <InputHook control={control} name="thumbnail" id="thumbnail" type="file" label="Thumbnail Image" />
                     <div className="flex items-center justify-between">
                         <button type="submit" className="mt-3 p-3 flex items-center justify-center px-3 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out">
                             Publish
