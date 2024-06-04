@@ -144,9 +144,7 @@ export const Header = () => {
                                 >
                                     <button>Register</button>
                                 </Link>
-
                             </div>
-
                         )}
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">

@@ -29,12 +29,11 @@ const schema = yup.object().shape({
     content: yup
         .string()
         .test("content", "Content is required", (value: any) => {
-            console.log(value)
             const test = getTextFromHTML(value);
-            console.log("test", test)
             return test.length > 0;
         })
-        .min(4, "Content must be at least 200 characters"),
+        .required("Content is required")
+        .min(10, "Content must be at least 200 characters"),
 });
 
 const AddNewPost = () => {
