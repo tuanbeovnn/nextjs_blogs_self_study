@@ -44,7 +44,7 @@ export function* handleAuthFetchMeRequest(action: any): Generator<CallEffect<Axi
         if (response.status === 200) {
             yield put(
                 authUpdateUser({
-                    user: response.data,
+                    user: response.data.details,
                     accessToken: payload,
                 })
             );
