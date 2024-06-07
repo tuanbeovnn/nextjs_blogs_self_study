@@ -24,6 +24,7 @@ import {
 export function* handlePostFeedRequest(action: ReturnType<typeof postFetchFeed>): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
     try {
         const response: AxiosResponse = yield call(requestsPostFetchFeed, action.payload || "");
+        console.log(response.data.details.records)
         if (response.status === 200) {
             yield put(postFetchFeedSuccess(response.data.details.records));
         }
