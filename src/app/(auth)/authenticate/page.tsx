@@ -12,11 +12,11 @@ function Authenticate() {
     const { user, isAuthenticated, loading } = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log(window.location.href)
         const authCodeRegex = /code=([^&]+)/;
         const isMatch = window.location.href.match(authCodeRegex);
         if (isMatch) {
-            const authCode = isMatch[1];
+            let authCode = isMatch[1];
+            authCode = decodeURIComponent(authCode);
             console.log(authCode);
             const data = {
                 code: authCode,
@@ -33,7 +33,6 @@ function Authenticate() {
     if (user && isAuthenticated && !loading) {
         return redirect("/");
     }
-
 
     return (
         <>
