@@ -20,6 +20,7 @@ export const Banner = () => {
                             Changing
                         </h1>
                         <Author
+                            id="null"
                             avatar="https://images2.thanhnien.vn/Uploaded/minhnguyet/2021_11_11/trieu-lo-tu-217.jpg"
                             name="Triệu Lộ Tư"
                             createdAt="09/11/1998"
