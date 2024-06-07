@@ -62,6 +62,19 @@ const authSlice = createSlice({
         }),
         authLogout: (state) => state,
 
+        authLoginGoogle: (state, action: PayloadAction<object>) => {
+            state.loading = true;
+            state.error = null;
+        },
+        authLoginGoogleSuccess: (state) => {
+            state.isAuthenticated = true;
+            state.loading = false;
+            state.error = null;
+        },
+        authLoginGoogleFailure: (state, action: PayloadAction<string>) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
     }
 })
 
@@ -76,6 +89,9 @@ export const {
     authFetchMe,
     authRefreshToken,
     authLogout,
+    authLoginGoogle,
+    authLoginGoogleSuccess,
+    authLoginGoogleFailure
 } = authSlice.actions;
 
 export default authSlice.reducer;

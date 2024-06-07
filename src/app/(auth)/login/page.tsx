@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
+import { OAuthConfig } from "../../../config/config";
 // Define your FormValues type
 type FormValues = {
     email: string;
@@ -46,6 +47,19 @@ function Login() {
         }
     }
 
+    const handleGoogleLogin = () => {
+        const callbackUrl = OAuthConfig.redirectUri;
+        const authUrl = OAuthConfig.authUri;
+        const googleClientId = OAuthConfig.clientId;
+
+        const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
+            callbackUrl
+        )}&response_type=code&client_id=${googleClientId}&scope=openid%20email%20profile`;
+
+        console.log(targetUrl);
+        window.location.href = targetUrl;
+    }
+
     if (user) {
         return redirect("/");
     }
@@ -72,7 +86,7 @@ function Login() {
                         <div className="border-b w-1/5"></div>
                     </div>
                     <button
-                        // onClick={handleGoogleLogin}
+                        onClick={handleGoogleLogin}
                         type="button"
                         className="w-full flex justify-center py-3 px-4 text-sm font-medium text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out mt-4"
                     >

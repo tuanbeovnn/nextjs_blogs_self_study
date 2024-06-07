@@ -39,3 +39,11 @@ export const requestsFreshToken = (data: object) => {
         data: data
     })
 }
+
+export const requestsAuthGoogleLogin = (data: object) => {
+    return axios.request({
+        method: 'POST',
+        url: apiURL + `/v1/auth/identity/outbound/authentication`,
+        data: data
+    })
+}

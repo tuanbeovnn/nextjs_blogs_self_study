@@ -4,8 +4,8 @@ import { logOut, saveToken } from '@/utils/auth';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { CallEffect, PutEffect, call, put } from 'redux-saga/effects';
-import { requestsAuthFetchMe, requestsAuthRegister, requestsFreshToken, requestsLogin } from './auth-requests';
-import { authLoginFailure, authLoginSuccess, authRegisterFailure, authRegisterSuccess, authUpdateUser } from './auth-slice';
+import { requestsAuthFetchMe, requestsAuthGoogleLogin, requestsAuthRegister, requestsFreshToken, requestsLogin } from './auth-requests';
+import { authLoginFailure, authLoginGoogleFailure, authLoginGoogleSuccess, authLoginSuccess, authRegisterFailure, authRegisterSuccess, authUpdateUser } from './auth-slice';
 
 export function* handleAuthRegister(action: { payload: object }) {
     try {
@@ -41,6 +41,7 @@ export function* handleAuthFetchMeRequest(action: any): Generator<CallEffect<Axi
     const { payload } = action;
     try {
         const response: AxiosResponse = yield call(requestsAuthFetchMe, payload);
+        console.log(response.data.details)
         if (response.status === 200) {
             yield put(
                 authUpdateUser({
@@ -95,4 +96,20 @@ export function* handleAuthLogout(): Generator<CallEffect<AxiosResponse> | PutEf
         })
     );
     logOut();
+}
+
+export function* handleAuthLoginGoogleRequest(action: { payload: object }) {
+    try {
+        const response: AxiosResponse = yield call(requestsAuthGoogleLogin, action.payload);
+        if (response.status === 200) {
+            saveToken(response.data.accessToken, response.data.refreshToken);
+            yield call(handleAuthFetchMeRequest, { payload: response.data.accessToken });
+            yield put(authLoginGoogleSuccess());
+            toast.success("Logged in successfully");
+        }
+    } catch (error: any) {
+        const errorMessage = error.response ? error.response.data.message : 'An unexpected error occurred';
+        yield put(authLoginGoogleFailure(errorMessage));
+        toast.error(errorMessage);
+    }
 }
