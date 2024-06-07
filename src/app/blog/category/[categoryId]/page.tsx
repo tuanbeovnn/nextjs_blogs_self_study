@@ -3,7 +3,7 @@ import { Ads, Author, Badge, Post } from "@/components";
 import { fetchByCategory, postFetchByCategory } from "@/sagas/post/post-slice";
 import { PostType } from "@/types";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CategoryBlog = () => {
@@ -12,18 +12,22 @@ const CategoryBlog = () => {
     const pathname = usePathname();
     const segments = pathname.split('/');
     const categoryName = segments[segments.length - 1];
-
+    const isInitialMount = useRef(true);
     const { listCatagory, loading, listPostByCategory } = useSelector((state: any) => state.post);
+
     useEffect(() => {
         dispatch(fetchByCategory());
     }, [dispatch]);
 
     useEffect(() => {
-        if (listCatagory.length > 0) {
-            const category = listCatagory.find((item: any) => item.name === categoryName);
-            if (category) {
-                dispatch(postFetchByCategory(category.id.toString()));
+        if (isInitialMount.current) {
+            if (listCatagory.length > 0) {
+                const category = listCatagory.find((item: any) => item.name === categoryName);
+                if (category) {
+                    dispatch(postFetchByCategory(category.id.toString()));
+                }
             }
+            isInitialMount.current = false;
         }
     }, [categoryName, dispatch, listCatagory]);
 

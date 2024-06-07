@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../../../public/assets/images/logo.png";
-import SearchIcon from "../../../public/assets/images/search.png";
 import SunnyIcon from "../../../public/assets/images/sunny.png";
 
 export const Header = () => {
@@ -52,8 +51,12 @@ export const Header = () => {
         }
     }, [user]);
 
+    const isInitialMount = useRef(true);
     useEffect(() => {
-        dispatch(fetchByCategory());
+        if (isInitialMount.current) {
+            dispatch(fetchByCategory());
+            isInitialMount.current = false;
+        }
     }, [dispatch]);
 
     return (

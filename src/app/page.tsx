@@ -4,21 +4,25 @@ import {
     Banner,
     Post
 } from '@/components';
-import LoadingSkeleton from '@/components/Loading/LoadingSkeleton';
 import PostItemLoading from '@/components/Loading/PostItemLoading';
 import { postFetchFeed } from '@/sagas/post/post-slice';
 import { PostType } from '@/types';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from "uuid";
 const itemsPerPage = 9;
 function Home() {
     const { listPost, loading } = useSelector((state: any) => state.post);
     const dispatch = useDispatch();
+    const isInitialMount = useRef(true);
+    
     useEffect(() => {
-        dispatch(
-            postFetchFeed()
-        );
+        if (isInitialMount.current) {
+            dispatch(
+                postFetchFeed()
+            );
+            isInitialMount.current = false;
+        }
     }, [dispatch]);
 
     return (
