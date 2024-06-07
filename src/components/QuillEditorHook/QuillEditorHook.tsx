@@ -18,7 +18,6 @@ const QuillEditorHook: React.FC<QuillEditorHookProps> = ({ label, formats, onCha
     const convertBase64ToFile = async (base64: string) => {
         const blob = await (await fetch(base64)).blob();
         const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg', lastModified: new Date().getTime() });
-        console.log(file)
         const formData = new FormData()
         formData.append("files", file)
         return formData;

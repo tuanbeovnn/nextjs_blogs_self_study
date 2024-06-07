@@ -17,7 +17,6 @@ function Authenticate() {
         if (isMatch) {
             let authCode = isMatch[1];
             authCode = decodeURIComponent(authCode);
-            console.log(authCode);
             const data = {
                 code: authCode,
                 deviceInfo: {

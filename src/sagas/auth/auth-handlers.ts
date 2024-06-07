@@ -41,7 +41,6 @@ export function* handleAuthFetchMeRequest(action: any): Generator<CallEffect<Axi
     const { payload } = action;
     try {
         const response: AxiosResponse = yield call(requestsAuthFetchMe, payload);
-        console.log(response.data.details)
         if (response.status === 200) {
             yield put(
                 authUpdateUser({

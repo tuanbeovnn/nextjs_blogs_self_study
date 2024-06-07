@@ -68,7 +68,6 @@ const AddNewPost = () => {
     };
 
     const onSubmit = (values: object) => {
-        console.log(values);
         if (isValid) {
             // Dispatch action or other logic
         }
