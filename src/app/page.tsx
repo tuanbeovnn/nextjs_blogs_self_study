@@ -13,19 +13,20 @@ import { v4 } from "uuid";
 const itemsPerPage = 9;
 
 function Home() {
-    const { listPost, loading } = useSelector((state: any) => state.post);
+    const { listPost, loading, totalPosts } = useSelector((state: any) => state.post);
     const dispatch = useDispatch();
     const isInitialMount = useRef(true);
     const [posts, setPosts] = useState<PostType[]>([]);
+    const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
         if (isInitialMount.current) {
             dispatch(
-                postFetchFeed(0)
+                postFetchFeed(currentPage)
             );
             isInitialMount.current = false;
         }
-    }, [dispatch]);
+    }, [dispatch, currentPage]);
 
     useEffect(() => {
         if (!isInitialMount.current) {
@@ -36,7 +37,8 @@ function Home() {
     }, [listPost]);
 
     const handleLoadMore = () => {
-        const nextPage = Math.ceil(posts.length / itemsPerPage) + 1;
+        const nextPage = currentPage + 1;
+        setCurrentPage(nextPage);
         dispatch(postFetchFeed(nextPage));
     };
 
@@ -77,7 +79,6 @@ function Home() {
                                 "Load more"
                             )}
                         </button>
-
                     </div>
                     <Ads />
                 </div>
