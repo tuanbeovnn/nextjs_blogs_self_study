@@ -1,10 +1,13 @@
 "use client";
 import { Ads, Author, Badge, Post } from "@/components";
+import PostItemLoading from "@/components/Loading/PostItemLoading";
 import { fetchByCategory, postFetchByCategory } from "@/sagas/post/post-slice";
 import { PostType } from "@/types";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { v4 } from "uuid";
+const itemsPerPage = 6;
 
 const CategoryBlog = () => {
 
@@ -20,14 +23,11 @@ const CategoryBlog = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (isInitialMount.current) {
-            if (listCatagory.length > 0) {
-                const category = listCatagory.find((item: any) => item.name === categoryName);
-                if (category) {
-                    dispatch(postFetchByCategory(category.id.toString()));
-                }
+        if (listCatagory.length > 0) {
+            const category = listCatagory.find((item: any) => item.name === categoryName);
+            if (category) {
+                dispatch(postFetchByCategory(category.id.toString()));
             }
-            isInitialMount.current = false;
         }
     }, [categoryName, dispatch, listCatagory]);
 
@@ -61,7 +61,7 @@ const CategoryBlog = () => {
 
             <div className="md:pt-12 pt-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {listPostByCategory && listPostByCategory?.length > 0 ? (
+                    {!loading && listPostByCategory?.length > 0 ? (
                         listPostByCategory.map((post: PostType) => (
                             <Post
                                 key={post.id}
@@ -69,7 +69,11 @@ const CategoryBlog = () => {
                             />
                         ))
                     ) : (
-                        <p>No posts available.</p>
+                        <>
+                            {new Array(itemsPerPage).fill(0).map(() => (
+                                <PostItemLoading key={v4()}></PostItemLoading>
+                            ))}
+                        </>
                     )}
                 </div>
                 <div className="md:my-20 my-8">
