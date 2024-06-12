@@ -23,7 +23,7 @@ import {
 
 export function* handlePostFeedRequest(action: ReturnType<typeof postFetchFeed>): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
     try {
-        const response: AxiosResponse = yield call(requestsPostFetchFeed, action.payload || "");
+        const response: AxiosResponse = yield call(requestsPostFetchFeed, "?limit=9" + "&offset=" + action.payload);
         if (response.status === 200) {
             yield put(postFetchFeedSuccess(response.data.details.records));
         }

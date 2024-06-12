@@ -7,23 +7,38 @@ import {
 import PostItemLoading from '@/components/Loading/PostItemLoading';
 import { postFetchFeed } from '@/sagas/post/post-slice';
 import { PostType } from '@/types';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from "uuid";
 const itemsPerPage = 9;
+
 function Home() {
     const { listPost, loading } = useSelector((state: any) => state.post);
     const dispatch = useDispatch();
     const isInitialMount = useRef(true);
-    
+    const [posts, setPosts] = useState<PostType[]>([]);
+
     useEffect(() => {
         if (isInitialMount.current) {
             dispatch(
-                postFetchFeed()
+                postFetchFeed(1)
             );
             isInitialMount.current = false;
         }
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!isInitialMount.current) {
+            setPosts(prevPosts => [...prevPosts, ...listPost]);
+        } else {
+            isInitialMount.current = false;
+        }
+    }, [listPost]);
+
+    const handleLoadMore = () => {
+        const nextPage = Math.ceil(posts.length / itemsPerPage) + 1;
+        dispatch(postFetchFeed(nextPage));
+    };
 
     return (
         <div>
@@ -37,8 +52,8 @@ function Home() {
                         </h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                            {!loading && listPost?.length > 0 ? (
-                                listPost.map((post: PostType) => (
+                            {posts?.length > 0 ? (
+                                posts.map((post: PostType) => (
                                     <Post
                                         key={post.id}
                                         post={post}
@@ -52,9 +67,17 @@ function Home() {
                                 </>
                             )}
                         </div>
-                        <button className="md:mt-8 mt-4 mx-auto px-5 py-3 flex items-center gap-3 h-12 border border-[#696A75]/30 rounded-md font-medium font-base text-[#696A75]">
-                            View All Post
-                        </button>
+                        <button className="md:mt-8 mt-4 mx-auto px-5 py-3 flex items-center gap-3 h-12 border border-blue-500 rounded-md font-medium font-base text-blue-500"
+    onClick={handleLoadMore}
+    disabled={loading}
+>
+    {loading ? (
+        <div className="mx-auto w-5 h-5 border-2 border-blue-500 border-t-2 border-t-transparent rounded-full animate-spin"></div>
+    ) : (
+        "Load more"
+    )}
+</button>
+
                     </div>
                     <Ads />
                 </div>

@@ -27,7 +27,7 @@ const postSlice = createSlice({
     name: 'posts',
     initialState,
     reducers: {
-        postFetchFeed: (state, action: PayloadAction) => {
+        postFetchFeed: (state, action: PayloadAction<number>) => {
             state.loading = true;
         },
         postFetchFeedSuccess: (state, action: PayloadAction<PostType[]>) => {
