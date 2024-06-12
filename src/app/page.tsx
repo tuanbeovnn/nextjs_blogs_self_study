@@ -21,7 +21,7 @@ function Home() {
     useEffect(() => {
         if (isInitialMount.current) {
             dispatch(
-                postFetchFeed(1)
+                postFetchFeed(0)
             );
             isInitialMount.current = false;
         }
@@ -68,15 +68,15 @@ function Home() {
                             )}
                         </div>
                         <button className="md:mt-8 mt-4 mx-auto px-5 py-3 flex items-center gap-3 h-12 border border-blue-500 rounded-md font-medium font-base text-blue-500"
-    onClick={handleLoadMore}
-    disabled={loading}
->
-    {loading ? (
-        <div className="mx-auto w-5 h-5 border-2 border-blue-500 border-t-2 border-t-transparent rounded-full animate-spin"></div>
-    ) : (
-        "Load more"
-    )}
-</button>
+                            onClick={handleLoadMore}
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <div className="mx-auto w-5 h-5 border-2 border-blue-500 border-t-2 border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                                "Load more"
+                            )}
+                        </button>
 
                     </div>
                     <Ads />
