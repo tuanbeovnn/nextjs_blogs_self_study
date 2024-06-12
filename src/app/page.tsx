@@ -13,7 +13,7 @@ import { v4 } from "uuid";
 const itemsPerPage = 9;
 
 function Home() {
-    const { listPost, loading, totalPosts } = useSelector((state: any) => state.post);
+    const { listPost, loading, totalRecordsFeed } = useSelector((state: any) => state.post);
     const dispatch = useDispatch();
     const isInitialMount = useRef(true);
     const [posts, setPosts] = useState<PostType[]>([]);
@@ -42,6 +42,7 @@ function Home() {
         dispatch(postFetchFeed(nextPage));
     };
 
+    const allPostsLoaded = posts?.length >= totalRecordsFeed;
     return (
         <div>
             <Banner />
@@ -71,7 +72,7 @@ function Home() {
                         </div>
                         <button className="md:mt-8 mt-4 mx-auto px-5 py-3 flex items-center gap-3 h-12 border border-blue-500 rounded-md font-medium font-base text-blue-500"
                             onClick={handleLoadMore}
-                            disabled={loading}
+                            disabled={loading || allPostsLoaded}
                         >
                             {loading ? (
                                 <div className="mx-auto w-5 h-5 border-2 border-blue-500 border-t-2 border-t-transparent rounded-full animate-spin"></div>

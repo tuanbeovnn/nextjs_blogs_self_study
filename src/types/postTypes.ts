@@ -33,3 +33,8 @@ export interface PostType {
     tags: PostTag[];
     createdDate: string;
 }
+
+export interface PostFeedResponse {
+    totalRecords: number;
+    records: PostType[];
+}

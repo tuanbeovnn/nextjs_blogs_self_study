@@ -25,7 +25,7 @@ export function* handlePostFeedRequest(action: ReturnType<typeof postFetchFeed>)
     try {
         const response: AxiosResponse = yield call(requestsPostFetchFeed, "?limit=9" + "&offset=" + action.payload);
         if (response.status === 200) {
-            yield put(postFetchFeedSuccess(response.data.details.records));
+            yield put(postFetchFeedSuccess(response.data.details));
         }
     } catch (error: any) {
         yield put(postFetchFeedFailure());

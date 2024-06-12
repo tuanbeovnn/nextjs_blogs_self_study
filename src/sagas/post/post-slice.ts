@@ -1,4 +1,4 @@
-import { CategoryItemType, PostType } from '@/types';
+import { CategoryItemType, PostFeedResponse, PostType } from '@/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
@@ -10,6 +10,7 @@ interface PostsState {
     listPostByCategory: PostType[];
     listPostByUserId: PostType[];
     listCatagory: CategoryItemType[];
+    totalRecordsFeed: number;
 
 }
 
@@ -20,6 +21,7 @@ const initialState: PostsState = {
     listPostByCategory: [],
     listPostByUserId: [],
     listCatagory: [],
+    totalRecordsFeed: 0,
 };
 
 
@@ -30,8 +32,9 @@ const postSlice = createSlice({
         postFetchFeed: (state, action: PayloadAction<number>) => {
             state.loading = true;
         },
-        postFetchFeedSuccess: (state, action: PayloadAction<PostType[]>) => {
-            state.listPost = action.payload;
+        postFetchFeedSuccess: (state, action: PayloadAction<PostFeedResponse>) => {
+            state.listPost = action.payload.records;
+            state.totalRecordsFeed = action.payload.totalRecords;
             state.loading = false;
         },
         postFetchFeedFailure: (state) => {
