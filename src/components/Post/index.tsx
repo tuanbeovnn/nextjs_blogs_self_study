@@ -3,12 +3,19 @@ import Link from 'next/link';
 import React from "react";
 import { Author } from "../Author";
 import { Badge } from "../Badge";
+import { usePathname } from "next/navigation";
 
 interface PostProps {
     post: PostType;
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
+
+    const pathname = usePathname();
+    const segments = pathname.split('/');
+    const categoryName = segments[segments.length - 1]
+    const href = segments[segments.length - 2] === "category" ? `/blog/category/${categoryName}/details/${post?.id}` : `/blog/details/${post?.id}`;
+
 
     const randomImageUrl = `https://source.unsplash.com/random?sig=${Math.floor(
         Math.random() * 2000
@@ -26,7 +33,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
             <div className="mt-4 p-2">
                 <Badge mode="outline" label={post?.category.name} />
                 <Link
-                    href={`/blog/details/${post?.id}`}
+                    href={href}
                     className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline"
                 >
                     {post?.title}

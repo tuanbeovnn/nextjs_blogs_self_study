@@ -30,7 +30,7 @@ function Authenticate() {
             }
             isInitialMount.current = false;
         }
-    }, [dispatch])
+    }, [deviceID, dispatch, platform])
 
     if (user && isAuthenticated && !loading) {
         return redirect("/");
