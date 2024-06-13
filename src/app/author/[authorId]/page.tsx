@@ -2,6 +2,7 @@
 import { Post } from "@/components";
 import { postFetchByUserId } from "@/sagas/post/post-slice";
 import { PostType } from "@/types";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +25,7 @@ const AuthorDetail = () => {
             <div className="md:p-12 p-6 mb-12 text-center rounded-xl bg-[#F6F6F7]">
                 <div className="max-w-2xl mx-auto">
                     <div className="flex gap-4 items-center justify-center">
-                        <img
+                        <Image
                             src="https://source.unsplash.com/random"
                             className="w-16 h-16 rounded-full"
                             alt=""

@@ -1,6 +1,5 @@
 "use client"
 import RequiredAuthPage from "@/components/Auth";
-import React from "react";
 const Profile = () => {
 
     return (

@@ -4,6 +4,7 @@ import React from "react";
 import { Author } from "../Author";
 import { Badge } from "../Badge";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 interface PostProps {
     post: PostType;
