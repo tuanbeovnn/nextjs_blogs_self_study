@@ -61,9 +61,22 @@ export const Header = () => {
     }, [dispatch]);
 
     const { setTheme } = useTheme()
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            setTheme('dark');
+            setIsDark(true);
+        } else {
+            setTheme('light');
+            setIsDark(false);
+        }
+    }, [setTheme]);
+
     const handleToggleDarkMode = (isChecked: boolean) => {
-        setTheme(isChecked ? "dark" : "light");
+        const newTheme = isChecked ? 'dark' : 'light';
+        setTheme(newTheme);
         setIsDark(isChecked);
+        localStorage.setItem('theme', newTheme);
     };
 
     return (
