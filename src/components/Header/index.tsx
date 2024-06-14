@@ -15,7 +15,7 @@ export const Header = () => {
     const dispatch = useDispatch();
     const [isDark, setIsDark] = useState(false);
     const { user, } = useSelector((state: any) => state.auth);
-
+    const { setTheme } = useTheme()
     const { listCatagory, loading } = useSelector((state: any) => state.post);
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -60,16 +60,10 @@ export const Header = () => {
         }
     }, [dispatch]);
 
-    const { setTheme } = useTheme()
     useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setTheme('dark');
-            setIsDark(true);
-        } else {
-            setTheme('light');
-            setIsDark(false);
-        }
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+        setIsDark(savedTheme === 'dark');
     }, [setTheme]);
 
     const handleToggleDarkMode = (isChecked: boolean) => {
@@ -78,6 +72,7 @@ export const Header = () => {
         setIsDark(isChecked);
         localStorage.setItem('theme', newTheme);
     };
+
 
     return (
         <header className="border-gray-200">
