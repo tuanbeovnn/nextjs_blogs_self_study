@@ -9,11 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../../../public/assets/images/logo.png";
 import SunnyIcon from "../../../public/assets/images/sunny.png";
 import { useTheme } from "next-themes"
+import { set } from 'lodash';
 
 export const Header = () => {
     const dispatch = useDispatch();
     const [isDark, setIsDark] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
     const { user, } = useSelector((state: any) => state.auth);
 
     const { listCatagory, loading } = useSelector((state: any) => state.post);
@@ -61,9 +61,10 @@ export const Header = () => {
     }, [dispatch]);
 
     const { setTheme } = useTheme()
-    const handleToggleDarkMode = () => {
-        setTheme(isDark ? "light" : "dark")
-    }
+    const handleToggleDarkMode = (isChecked: boolean) => {
+        setTheme(isChecked ? "dark" : "light");
+        setIsDark(isChecked);
+    };
 
     return (
         <header className="border-gray-200">
@@ -96,16 +97,6 @@ export const Header = () => {
                 </div>
                 <div className="hidden md:flex items-center gap-x-3 flex-shrink-0 h-[36px]">
 
-                    {/* <form className="relative flex items-center h-full md:w-30 w-full rounded-md bg-[#F4F4F5]">
-                        <input
-                            className="w-full h-full outline-none text-sm text-gray-700 pl-4 px-2 pr-2 bg-transparent"
-                            type="text"
-                            placeholder="Search"
-                        />
-                        <div className="h-full px-2 flex items-center text-gray-700">
-                            <Image src={SearchIcon} className="w-4" alt="search-icon" />
-                        </div>
-                    </form> */}
                     {
                         user && user.id ?
                             <label className="relative inline-flex items-center cursor-pointer">
@@ -113,65 +104,12 @@ export const Header = () => {
                             </label> : ""
                     }
 
-                    <div className="flex justify-center space-x-2 h-full">
-                        {user && user.id ? (
-                            <div className="relative flex items-center justify-center">
-                                <img
-                                    ref={avatarRef}
-                                    className="w-10 h-10 min-w-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
-                                    src="https://i.pravatar.cc/150"
-                                    alt="Bordered avatar"
-                                    onClick={toggleDropdown}
-                                />
-                                <div>
-                                </div>
-                                {dropdownVisible && (
-                                    <div ref={dropdownRef} id="dropdownInformation" className="absolute top-full mt-4 right-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-                                        <div className="px-4 py-3 text-sm text-gray-900">
-                                            <div>{user?.name}</div>
-                                            <div className="font-medium truncate">{user?.email}</div>
-                                        </div>
-                                        <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
-                                            <li>
-                                                <Link href="/" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Dashboard</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/users/profile" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Profile</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/blog/newpost" className="block px-4 py-2 hover:bg-gray-200" onClick={handleOptionClick}>Add new post</Link>
-                                            </li>
-                                        </ul>
-                                        <div className="py-2">
-                                            <a href="/" onClick={() => { dispatch(authLogout()); handleOptionClick(); }}
-                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Sign out</a>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        ) : (
-                            <div className="flex justify-center space-x-2 h-full">
-                                <Link
-                                    href="/login"
-                                    className="flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                                >
-                                    <button>Login</button>
-                                </Link>
-                                <Link
-                                    href="/register"
-                                    className="flex items-center justify-center px-5 text-blue-500 bg-white border border-blue-500 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                                >
-                                    <button>Register</button>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+
 
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
                             type="checkbox"
-                            checked={isDark}
-                            onChange={(e) => setIsDark(e.target.checked)}
+                            onChange={(e) => handleToggleDarkMode(e.target.checked)}
                             className="sr-only"
                         />
                         <div
@@ -184,11 +122,10 @@ export const Header = () => {
                             >
                                 <Image src={SunnyIcon} className="w-4" alt="toggle dark mode" />
                             </div>
-
                         </div>
                     </label>
                 </div>
-                <button
+                {/* <button
                     onClick={() => handleToggleDarkMode()}
                     type="button"
                     className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden"
@@ -206,7 +143,7 @@ export const Header = () => {
                             clipRule="evenodd"
                         />
                     </svg>
-                </button>
+                </button> */}
             </div>
         </header>
     );
