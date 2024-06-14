@@ -8,6 +8,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Logo from "../../../public/assets/images/logo.png";
 import SunnyIcon from "../../../public/assets/images/sunny.png";
+import { useTheme } from "next-themes"
 
 export const Header = () => {
     const dispatch = useDispatch();
@@ -59,8 +60,13 @@ export const Header = () => {
         }
     }, [dispatch]);
 
+    const { setTheme } = useTheme()
+    const handleToggleDarkMode = () => {
+        setTheme(isDark ? "light" : "dark")
+    }
+
     return (
-        <header className="bg-white border-gray-200">
+        <header className="border-gray-200">
             <div className="flex flex-wrap items-center justify-between max-w-7xl mx-auto md:px-8 px-4 md:py-8 py-2.5 gap-4">
                 <Link href="/" className="flex items-center">
                     <Image src={Logo} className="md:h-9 h-6" alt="Logo" />
@@ -183,7 +189,7 @@ export const Header = () => {
                     </label>
                 </div>
                 <button
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => handleToggleDarkMode()}
                     type="button"
                     className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden"
                 >
@@ -201,38 +207,6 @@ export const Header = () => {
                         />
                     </svg>
                 </button>
-
-                <div
-                    className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform bg-white -translate-x-full  ${isOpen && "translate-x-0"
-                        }`}
-                >
-                    <button
-                        type="button"
-                        onClick={() => setIsOpen(false)}
-                        className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center "
-                    >
-                        <svg
-                            aria-hidden="true"
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
-
-                </div>
-                {isOpen && (
-                    <div
-                        onClick={() => setIsOpen(false)}
-                        className="fixed z-20 bg-black/30 h-screen w-full left-0 top-0"
-                    ></div>
-                )}
             </div>
         </header>
     );

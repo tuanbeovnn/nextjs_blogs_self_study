@@ -3,7 +3,7 @@ import Image from 'next/image';
 import LogoIcon from "../../../public/assets/images/logo-notext.png";
 export const Footer = () => {
     return (
-        <footer className="bg-[#F6F6F7]">
+        <footer className="">
             <div className="max-w-7xl mx-auto md:px-8 px-4">
               
                 <div className="flex flex-wrap py-8 gap-3 items-center md:flex-row flex-col">

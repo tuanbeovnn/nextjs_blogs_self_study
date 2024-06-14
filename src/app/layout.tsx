@@ -5,6 +5,7 @@ import { Work_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import { ThemeProvider } from "@/components/Common/ThemeProvider";
 const workSans = Work_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
@@ -22,9 +23,17 @@ export default function RootLayout({
         <html lang="en">
             <body className={workSans.className}>
                 <ReduxProvider>
-                    <Layout >
-                        {children}
-                    </Layout>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="light"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+
+                        <Layout >
+                            {children}
+                        </Layout>
+                    </ThemeProvider>
                 </ReduxProvider>
                 <ToastContainer bodyClassName="font-primary text-sm"></ToastContainer>
             </body>
