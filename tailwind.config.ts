@@ -23,6 +23,18 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        main: "#3B3C4A",
+        primary: "#4B6BFB",
+        heading: "#181A2A",
+        borderLight: "#E8E8EA",
+        borderDark: "#242535",
+        description: "#97989F",
+        desc: "#BABABF",
+      },
+      fontFamily: {
+        primary: ["Work Sans", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

@@ -1,38 +1,27 @@
-"use client"
-import Image from 'next/image';
-import LogoIcon from "../../../public/assets/images/logo-notext.png";
+"use client";
+
+import Logo from "@/components/Logo/Logo";
+
 export const Footer = () => {
-    return (
-        <footer className="">
-            <div className="max-w-7xl mx-auto md:px-8 px-4">
-              
-                <div className="flex flex-wrap py-8 gap-3 items-center md:flex-row flex-col">
-                    <div className="flex flex-shrink-0 items-center gap-3 md:order-1 order-2">
-                        <Image src={LogoIcon} className="w-12 h-12" alt="" />
-                        <div>
-                            <div className="text-xl text-[#141624]">
-                                Meta<span className="font-bold">Blog</span>
-                            </div>
-                            <div className="text-base text-[#3B3C4A] mt-0.5">
-                                © JS Template 2023. All Rights Reserved.
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <footer className="border-t-borderLight dark:border-t-borderDark border-t">
+      <div className="max-w-7xl mx-auto md:px-8 px-4">
+        <div className="flex flex-wrap py-8 gap-3 items-center md:flex-row flex-col">
+          <Logo kind={"footer"} />
 
-                    <ul className="flex gap-8 md:flex-row flex-col order-1 mb-6 md:mb-0 flex-grow justify-end">
-                        <li>
-                            <a href="/">Terms of Use</a>
-                        </li>
-                        <li>
-                            <a href="/">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="/">Cookie Policy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-    );
+          <ul className="flex dark:text-white text-main gap-8 md:flex-row flex-col order-1 mb-6 md:mb-0 flex-grow justify-end">
+            <li>
+              <a href="/">Terms of Use</a>
+            </li>
+            <li>
+              <a href="/">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="/">Cookie Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  );
 };
-

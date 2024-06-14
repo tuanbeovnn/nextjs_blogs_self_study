@@ -9,11 +9,11 @@ interface Props {
 export const Badge = ({ mode, label }:Props) => {
     return (
         <div
-            className={`inline-flex items-center justify-center rounded-md py-1 px-2.5 gap-1 ${mode === "outline" ? "bg-[#4B6BFB]/5" : "bg-[#4B6BFB]"
+            className={`inline-flex items-center justify-center rounded-md py-1 px-2.5 gap-1 ${mode === "outline" ? "bg-primary/5" : "bg-primary"
                 }`}
         >
             <span
-                className={`text-sm font-medium ${mode === "outline" ? "text-[#4B6BFB]" : "text-white"
+                className={`text-sm font-medium ${mode === "outline" ? "text-primary" : "text-white"
                     }`}
             >
                 {label}

@@ -50,7 +50,7 @@ function Home() {
                 <div className="max-w-7xl mx-auto md:px-8 px-4">
                     <Ads />
                     <div className="md:py-20 py-4">
-                        <h2 className="font-bold text-2xl text-[#181A2A] md:mb-8 mb-4">
+                        <h2 className="font-bold text-2xl text-heading dark:text-white md:mb-8 mb-4">
                             Latest Post
                         </h2>
 

@@ -6,7 +6,7 @@ import LoadingSkeleton from './LoadingSkeleton';
 
 const PostItemLoading = () => {
     return (
-        <div className="md:p-4 p-2.5 border border-[#E8E8EA] rounded-xl h-full">
+        <div className="md:p-4 p-2.5 border border-borderLight dark:border-borderDark rounded-xl h-full">
             <div className="relative block pt-[67%] transition-transform duration-200 overflow-hidden group">
                 <LoadingSkeleton width="100%" height="100%" className="absolute top-0 left-0 object-cover object-center rounded-lg group-hover:scale-110 duration-150" radius="10px"></LoadingSkeleton>
             </div>
@@ -22,15 +22,15 @@ const PostItemLoading = () => {
                 </div>
                 <Link
                     href=""
-                    className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline"
+                    className="md:text-2xl text-lg text-heading font-semibold line-clamp-3 mb-5 my-4 h-24 hover:underline"
                 >
-                    <LoadingSkeleton width="100%" height="70%" className="md:text-2xl text-lg text-[#181A2A] font-semibold line-clamp-3 mb-5 my-4 h-24 no-underline hover:underline" radius="10px"></LoadingSkeleton>
+                    <LoadingSkeleton width="100%" height="70%" className="md:text-2xl text-lg text-heading font-semibold line-clamp-3 mb-5 my-4 h-24 hover:underline" radius="10px"></LoadingSkeleton>
 
                 </Link>
                 <Link href="" className="flex flex-wrap items-center">
                     <LoadingSkeleton className="w-10 h-10 object-cover object-center rounded-full mr-3" width="40px" height="40px" radius="50px"></LoadingSkeleton>
                     <span
-                        className="text-base font-medium mr-5 text-[#ffff] no-underline hover:underline"
+                        className="font-medium mr-5 text-[#ffff] hover:underline"
                     >
                         <LoadingSkeleton width="270px" height="25px" radius="20px"></LoadingSkeleton>
                     </span>
