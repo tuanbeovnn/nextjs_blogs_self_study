@@ -233,7 +233,7 @@
   }
 
   body {
-    @apply font-primary text-base text-main;
+    @apply font-primary text-base text-main bg-black;
   }
 
   input,

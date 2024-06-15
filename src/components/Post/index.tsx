@@ -19,9 +19,12 @@ export const Post: React.FC<PostProps> = ({ post }) => {
       ? `/blog/category/${categoryName}/details/${post?.id}`
       : `/blog/details/${post?.id}`;
 
-  const randomImageUrl = `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 30)}`;
+  // const randomImageUrl = `https://picsum.photos/200/300?random=${Math.floor(
+  //   Math.random() * 30
+  // )}`;
+  const randomImageUrl = `https://picsum.photos/200/300`;
   return (
-    <div className="md:p-4 p-2.5 border border-borderLight dark:border-borderDark rounded-xl h-full">
+    <div className="md:p-4 p-2.5 border bg-white dark:bg-black border-borderLight dark:border-borderDark rounded-2xl h-full">
       <div className="overflow-hidden h-60 rounded-lg">
         <Image
           className="object-cover object-center w-full h-full hover:scale-110 transition-transform duration-200 "
