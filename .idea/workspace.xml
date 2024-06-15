@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="255209b8-0835-4e98-9a4f-e985d83584db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/users/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/profile/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DropdownHook/DropdownHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropdownHook/DropdownHook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/InputHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/InputHook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuillEditorHook/QuillEditorHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuillEditorHook/QuillEditorHook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkbox/CheckBoxHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkbox/CheckBoxHook.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="255209b8-0835-4e98-9a4f-e985d83584db" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,7 +85,7 @@
       <workItem from="1718383825543" duration="183000" />
       <workItem from="1718384040037" duration="4815000" />
       <workItem from="1718444253367" duration="342000" />
-      <workItem from="1718455696988" duration="2338000" />
+      <workItem from="1718455696988" duration="2546000" />
     </task>
     <servers />
   </component>
