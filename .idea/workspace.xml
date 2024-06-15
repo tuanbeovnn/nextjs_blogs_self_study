@@ -6,12 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="255209b8-0835-4e98-9a4f-e985d83584db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/author/[authorId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/author/[authorId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/authenticate/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/authenticate/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/profile/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="vietbevis" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,7 +53,7 @@
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Admin\\AppData\\Roaming\\npm\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.JavaScript",
+    "settings.editor.selected.configurable": "actions.on.save",
     "ts.external.directory.path": "/Users/tuanbeo/Documents/My_blog_2024/my-blogs-tech/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -91,7 +88,9 @@
       <workItem from="1717438297075" duration="434000" />
       <workItem from="1718378998014" duration="4701000" />
       <workItem from="1718383825543" duration="183000" />
-      <workItem from="1718384040037" duration="4645000" />
+      <workItem from="1718384040037" duration="4815000" />
+      <workItem from="1718444253367" duration="342000" />
+      <workItem from="1718455696988" duration="2546000" />
     </task>
     <servers />
   </component>

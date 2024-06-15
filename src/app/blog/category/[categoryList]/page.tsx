@@ -1,6 +1,7 @@
 "use client";
 import {Ads, Author, Badge, Post} from "@/components";
 import PostItemLoading from "@/components/Loading/PostItemLoading";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 import {fetchByCategory, postFetchByCategory} from "@/sagas/post/post-slice";
 import {PostType} from "@/types";
 import {usePathname} from "next/navigation";
@@ -17,7 +18,7 @@ const CategoryBlog = () => {
 	const categoryName = segments[segments.length - 1];
 	const isInitialMount = useRef(true);
 	const {listCatagory, loading, listPostByCategory} = useSelector(
-		(state: any) => state.post,
+		(state: any) => state.post
 	);
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ const CategoryBlog = () => {
 	useEffect(() => {
 		if (listCatagory.length > 0) {
 			const category = listCatagory.find(
-				(item: any) => item.name === categoryName,
+				(item: any) => item.name === categoryName
 			);
 			if (category) {
 				dispatch(postFetchByCategory(category.id.toString()));
@@ -66,19 +67,17 @@ const CategoryBlog = () => {
 			</div>
 
 			<div className="md:pt-12 pt-4">
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-					{!loading && listPostByCategory?.length > 0 ? (
-						listPostByCategory.map((post: PostType) => (
-							<Post key={post.id} post={post}/>
-						))
-					) : (
-						<>
+				{!loading && listPostByCategory?.length > 0 ? (
+          <HoverEffect items={listPostByCategory} />
+        ) : (
+          <><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
 							{new Array(itemsPerPage).fill(0).map(() => (
 								<PostItemLoading key={v4()}></PostItemLoading>
 							))}
-						</>
-					)}
-				</div>
+						</div>
+					</>
+				)}
 				<div className="md:my-20 my-8">
 					<Ads/>
 				</div>

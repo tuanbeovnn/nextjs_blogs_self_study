@@ -27,6 +27,11 @@ const nextConfig = {
         hostname: "source.unsplash.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "bootdey.com",
+        pathname: "**",
+      },
     ],
   },
 };

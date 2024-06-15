@@ -107,7 +107,9 @@ function Login() {
           {/* "or" between two buttons */}
           <div className="flex items-center justify-center mt-4">
             <div className="border-b w-1/5"></div>
-            <div className="mx-3 text-gray-600 font-medium">or</div>
+            <div className="mx-3 text-gray-600 font-medium dark:text-desc">
+              or
+            </div>
             <div className="border-b w-1/5"></div>
           </div>
           <button

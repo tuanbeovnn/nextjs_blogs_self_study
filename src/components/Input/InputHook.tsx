@@ -22,17 +22,17 @@ function InputHook<T extends HTMLElement = HTMLInputElement>({
   });
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-main dark:text-white">
       <label
         htmlFor={props.id || name}
-        className="block text-main dark:text-white text-sm font-bold mb-2"
+        className="block text-sm font-bold mb-2"
       >
         {label}
       </label>
       <input
         {...field}
         {...(props as any)}
-        className={`mt-1 block w-full px-3 py-3 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${fieldState.error ? "border-red-500" : "border-gray-300"}`}
+        className={`mt-1 block w-full px-3 py-3 border dark:border-borderDark rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ${fieldState.error ? "border-red-500" : "border-gray-300"}`}
       />
       {fieldState.error && (
         <span className="text-red-500 text-sm">{fieldState.error.message}</span>
