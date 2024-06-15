@@ -14,7 +14,6 @@ const BlogDetail = () => {
   const dispatch = useDispatch();
   const { postDetail, loading } = useSelector((state: any) => state.post);
   const { user } = useSelector((state: any) => state.auth);
-
   useEffect(() => {
     dispatch(postFetchById(params.blogId.toString()));
   }, [dispatch, params.blogId]);

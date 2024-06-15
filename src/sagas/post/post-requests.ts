@@ -8,10 +8,10 @@ export const requestsPostFetchFeed = (params: string) => {
     })
 }
 
-export const requestsGetPostById = (postId: string) => {
+export const requestsGetPostBySlug = (postId: string) => {
     return axios.request({
         method: 'GET',
-        url: apiURL + `/v1/public/posts/${postId}`
+        url: apiURL + `/v1/public/posts/slug/${postId}`
     })
 }
 

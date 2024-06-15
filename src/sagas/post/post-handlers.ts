@@ -2,7 +2,7 @@
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { CallEffect, PutEffect, call, put } from 'redux-saga/effects';
-import { requestsCategoryFetch, requestsGetPostById, requestsPostFetchFeed } from './post-requests';
+import { requestsCategoryFetch, requestsGetPostBySlug, requestsPostFetchFeed } from './post-requests';
 import {
     fetchByCategoryFailure,
     fetchByCategorySuccess,
@@ -39,7 +39,7 @@ export function* handlePostFeedRequest(action: ReturnType<typeof postFetchFeed>)
 
 export function* handlePostByIdRequest(action: ReturnType<typeof postFetchById>): Generator<CallEffect<AxiosResponse> | PutEffect, any, AxiosResponse> {
     try {
-        const response: AxiosResponse = yield call(requestsGetPostById, action.payload);
+        const response: AxiosResponse = yield call(requestsGetPostBySlug, action.payload);
         if (response.status === 200) {
             yield put(postFetchByIdSuccess(response.data.details));
         }
