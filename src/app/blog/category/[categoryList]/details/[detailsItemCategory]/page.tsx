@@ -28,7 +28,7 @@ function CategoryItemDetail() {
       </div>
 
       {/* Comment Post */}
-      <h1 className="text-2xl font-semibold mb-4 mt-6 text-gray-700  dark:text-white">
+      <h1 className="text-2xl font-semibold mb-4 mt-6 text-gray-700 dark:text-white">
         Discussion (20)
       </h1>
       <form className="mb-5">

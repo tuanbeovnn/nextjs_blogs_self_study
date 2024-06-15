@@ -5,29 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="255209b8-0835-4e98-9a4f-e985d83584db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Logo/Logo.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/details/[detailsItemCategory]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/category/[categoryList]/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/details/[blogId]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Author/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Author/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Badge/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Badge/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Banner/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Banner/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Comment/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Comment/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/blog/newpost/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DropdownHook/DropdownHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropdownHook/DropdownHook.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Input/InputHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/InputHook.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Loading/PostItemLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loading/PostItemLoading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Post/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Post/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PostDetails/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PostDetails/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RelatedPost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RelatedPost/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuillEditorHook/QuillEditorHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuillEditorHook/QuillEditorHook.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/checkbox/CheckBoxHook.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkbox/CheckBoxHook.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +96,9 @@
       <workItem from="1717438297075" duration="434000" />
       <workItem from="1718378998014" duration="4701000" />
       <workItem from="1718383825543" duration="183000" />
-      <workItem from="1718384040037" duration="4645000" />
+      <workItem from="1718384040037" duration="4815000" />
+      <workItem from="1718444253367" duration="342000" />
+      <workItem from="1718455696988" duration="2338000" />
     </task>
     <servers />
   </component>
