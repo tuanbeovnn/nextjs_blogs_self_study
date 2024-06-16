@@ -32,6 +32,7 @@ export interface PostType {
   category: CategoryItemType;
   tags: PostTag[];
   createdDate: string;
+  slug: string;
 }
 
 export interface PostFeedResponse {
