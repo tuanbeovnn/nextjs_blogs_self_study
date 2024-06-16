@@ -12,7 +12,7 @@ interface Props {
 
 export const Author = ({
   avatar,
-  name,
+  name = "",
   createdAt,
   id,
   light = false,
@@ -28,7 +28,9 @@ export const Author = ({
       />
       <span
         className={`text-base font-medium mr-5 ${
-          light ? "text-[#ffff]" : "text-description no-underline hover:underline"
+          light
+            ? "text-[#ffff]"
+            : "text-description no-underline hover:underline"
         }`}
       >
         {name}

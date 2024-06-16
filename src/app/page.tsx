@@ -1,5 +1,5 @@
 "use client";
-import { Ads, Banner, Post } from "@/components";
+import { Ads, Banner } from "@/components";
 import PostItemLoading from "@/components/Loading/PostItemLoading";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { postFetchFeed } from "@/sagas/post/post-slice";
@@ -13,6 +13,7 @@ function Home() {
   const { listPost, loading, totalRecordsFeed } = useSelector(
     (state: any) => state.post
   );
+
   const dispatch = useDispatch();
   const isInitialMount = useRef(true);
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -22,21 +23,14 @@ function Home() {
     if (isInitialMount.current) {
       dispatch(postFetchFeed(currentPage));
       isInitialMount.current = false;
-    }
-  }, [dispatch, currentPage]);
-
-  useEffect(() => {
-    if (!isInitialMount.current) {
-      setPosts((prevPosts) => [...prevPosts, ...listPost]);
     } else {
-      isInitialMount.current = false;
+      setPosts((prevPosts) => [...prevPosts, ...listPost]);
     }
-  }, [listPost]);
+  }, [dispatch, currentPage, listPost]);
 
   const handleLoadMore = () => {
     const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
-    dispatch(postFetchFeed(nextPage));
   };
 
   const allPostsLoaded = posts?.length >= totalRecordsFeed;
