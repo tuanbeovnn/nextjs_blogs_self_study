@@ -67,11 +67,11 @@ export const Header = () => {
 
   const isInitialMount = useRef(true);
   useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialMount.current && listCatagory.length === 0) {
       dispatch(fetchByCategory());
       isInitialMount.current = false;
     }
-  }, [dispatch]);
+  }, [dispatch, listCatagory.length]);
 
   const handleToggleDarkMode = () => {
     setTheme(theme === "dark" ? "light" : "dark");
