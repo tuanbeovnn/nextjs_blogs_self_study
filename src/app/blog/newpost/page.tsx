@@ -13,7 +13,7 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 
-export const getTextFromHTML = (data: string) => {
+const getTextFromHTML = (data: string) => {
   const container = document.createElement("div");
   container.innerHTML = data;
   return container.textContent || container.innerText;
