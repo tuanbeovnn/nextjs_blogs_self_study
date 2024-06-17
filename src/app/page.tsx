@@ -20,7 +20,7 @@ function Home() {
 
   useEffect(() => {
     if (listPost.length === 0) dispatch(postFetchFeed(0));
-  }, [dispatch]);
+  }, [dispatch, listPost.length]);
 
   const handleLoadMore = () => {
     const newPage = currentPage + 1;
@@ -28,12 +28,9 @@ function Home() {
     dispatch(postFetchFeed(newPage));
   };
 
-  // console.log("Post", listPost);
-
   const allPostsLoaded = listPost?.length >= totalRecordsFeed;
   return (
     <>
-      {/*<button onClick={handleLoadMore}>click me</button>*/}
       <div>
         <Banner />
         <div className="md:pt-20 pt-4 pb-24">
